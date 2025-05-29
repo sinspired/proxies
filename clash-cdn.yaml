@@ -225,7 +225,7 @@ rules:
   - "RULE-SET,private,DIRECT"
   - "RULE-SET,bing,PROXY"
   - "RULE-SET,youtube,Youtube"
-  - "RULE-SET,copilot,Global"
+  - "RULE-SET,copilot,GLOBAL"
   - "RULE-SET,bard,Gemini"
   - "RULE-SET,gemini,Gemini"
   - "RULE-SET,openai,OpenAI"
