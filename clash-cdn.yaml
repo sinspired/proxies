@@ -211,9 +211,11 @@ proxy-groups:
     proxies:
       - PROXY
       - AUTO
-      - AIGC
-      - Telegram
+      - OpenAI
+      - Gemini
+      - Youtube
       - Google
+      - Telegram
       - HK AUTO
       - SG AUTO
       - JP AUTO
@@ -225,7 +227,7 @@ rules:
   - "RULE-SET,private,DIRECT"
   - "RULE-SET,bing,PROXY"
   - "RULE-SET,youtube,Youtube"
-  - "RULE-SET,copilot,GLOBAL"
+  - "RULE-SET,copilot,PROXY"
   - "RULE-SET,bard,Gemini"
   - "RULE-SET,gemini,Gemini"
   - "RULE-SET,openai,OpenAI"
