@@ -6,14 +6,14 @@ rule-providers:
     interval: 86400
     format: yaml
     type: http
-  ad:
+  ban_ad:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Advertising/Advertising.yaml
     path: ./ruleset/ad.yaml
     behavior: classical
     interval: 86400
     format: yaml
     type: http
-  program_ad:
+  ban_program_ad:
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
     path: ./ruleset/program_ad.list
     behavior: classical
@@ -111,13 +111,6 @@ rule-providers:
     interval: 86400
     format: yaml
     type: http
-  bard:
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BardAI/BardAI.yaml
-    path: ./ruleset/bard.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
   openai:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml
     path: ./ruleset/openai.yaml
@@ -181,33 +174,6 @@ proxy-groups:
       - JP AUTO
       - US AUTO
       - Youtube
-  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    name: AUTO
-    type: url-test
-    interval: 300
-  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)Openai|openai|Open AI|OpenAI
-    name: OpenAI
-    type: url-test
-    interval: 300
-  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)Gemini|gemini|Gemini AI|GeminiAI
-    name: Gemini
-    type: url-test
-    interval: 300
-  - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?=.*\bYoutube\b|youtube|YT|YouTube)
-    name: Youtube
-    type: url-test
-    interval: 300
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Bing.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -234,24 +200,31 @@ proxy-groups:
     name: Google
     type: select
     proxies:
-      - Youtube
       - HK AUTO
       - SG AUTO
       - JP AUTO
       - US AUTO
+      - Youtube
       - AUTO
       - PROXY
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
     name: Spotify
     type: select
     proxies:
-      - DIRECT
-      - HK AUTO
       - US AUTO
+      - HK AUTO
       - PROXY
       - AUTO
       - SG AUTO
       - JP AUTO
+      - DIRECT
+  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    name: AUTO
+    type: url-test
+    interval: 300
+    tolerance: 10
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -259,6 +232,7 @@ proxy-groups:
     name: HK AUTO
     type: url-test
     interval: 300
+    tolerance: 10
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -266,6 +240,7 @@ proxy-groups:
     name: SG AUTO
     type: url-test
     interval: 300
+    tolerance: 10
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -273,6 +248,7 @@ proxy-groups:
     name: JP AUTO
     type: url-test
     interval: 300
+    tolerance: 10
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -280,6 +256,31 @@ proxy-groups:
     name: US AUTO
     type: url-test
     interval: 300
+    tolerance: 10
+  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)Openai|openai|Open AI|OpenAI
+    name: OpenAI
+    type: url-test
+    interval: 300
+    tolerance: 10
+  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)Gemini|gemini|Gemini AI|GeminiAI
+    name: Gemini
+    type: url-test
+    interval: 300
+    tolerance: 10
+  - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)(?=.*\bYoutube\b|youtube|YT|YouTube)
+    name: Youtube
+    type: url-test
+    interval: 300
+    tolerance: 10
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -301,15 +302,14 @@ proxy-groups:
     type: select
 
 rules:
-  - "RULE-SET,ad,REJECT"
-  - "RULE-SET,program_ad,REJECT"
+  - "RULE-SET,ban_ad,REJECT"
+  - "RULE-SET,ban_program_ad,REJECT"
   - "RULE-SET,private,DIRECT"
   - "RULE-SET,program_direct,DIRECT"
   - "RULE-SET,lan,DIRECT"
   - "RULE-SET,NetEaseMusic,DIRECT"
   - "RULE-SET,Download,DIRECT"
   - "RULE-SET,youtube,Youtube"
-  - "RULE-SET,bard,Gemini"
   - "RULE-SET,gemini,Gemini"
   - "RULE-SET,openai,OpenAI"
   - "RULE-SET,claude,OpenAI"
