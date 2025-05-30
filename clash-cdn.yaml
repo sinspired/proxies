@@ -223,6 +223,7 @@ proxy-groups:
     type: select
     proxies:
       - DIRECT
+      - PROXY
       - AUTO
       - HK AUTO
       - SG AUTO
@@ -241,12 +242,12 @@ proxy-groups:
     name: Google
     type: select
     proxies:
-      - PROXY
-      - AUTO
       - HK AUTO
       - SG AUTO
       - JP AUTO
       - US AUTO
+      - AUTO
+      - PROXY
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Google.png
     name: Spotify
     type: select
