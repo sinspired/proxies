@@ -180,19 +180,11 @@ proxy-groups:
       - SG AUTO
       - JP AUTO
       - US AUTO
-      - AIGC
       - Youtube
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     name: AUTO
-    type: url-test
-    interval: 300
-  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?=.*(openai))^(?=.*(gemini))^.*$
-    name: AIGC
     type: url-test
     interval: 300
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
