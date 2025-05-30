@@ -242,6 +242,7 @@ proxy-groups:
     name: Google
     type: select
     proxies:
+      - Youtube
       - HK AUTO
       - SG AUTO
       - JP AUTO
