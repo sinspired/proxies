@@ -6,6 +6,34 @@ rule-providers:
     interval: 86400
     format: yaml
     type: http
+  ad:
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Advertising/Advertising.yaml
+    path: ./ruleset/ad.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  program_ad:
+    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanProgramAD.list
+    path: ./ruleset/program_ad.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+  program_direct:
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Direct/Direct.yaml
+    path: ./ruleset/direct.list
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  lan:
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Lan/Lan.yaml
+    path: ./ruleset/lan.list
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
   cn_domain:
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.yaml
     path: ./ruleset/cn_domain.yaml
@@ -104,13 +132,33 @@ rule-providers:
     interval: 86400
     format: yaml
     type: http
-
   steam:
     url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Steam/Steam.yaml
     path: ./ruleset/steam.yaml
     behavior: classical
     interval: 86400
     format: yaml
+    type: http
+  OneDrive:
+    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/OneDrive.list
+    path: ./ruleset/OneDrive.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+  NetEaseMusic:
+    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/NetEaseMusic.list
+    path: ./ruleset/NetEaseMusic.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+  Download:
+    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Download.list
+    path: ./ruleset/Download.list
+    behavior: classical
+    interval: 86400
+    format: text
     type: http
 
 proxy-groups:
@@ -125,6 +173,7 @@ proxy-groups:
       - SG AUTO
       - JP AUTO
       - US AUTO
+      - AIGC
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -138,7 +187,7 @@ proxy-groups:
     name: AIGC
     type: url-test
     interval: 300
-  - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png
+  - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/OpenAI.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)Openai|openai|Open AI|OpenAI
@@ -159,6 +208,18 @@ proxy-groups:
     name: Youtube
     type: url-test
     interval: 300
+  - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Bing.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    name: Bing
+    type: select
+    proxies:
+      - DIRECT
+      - AUTO
+      - HK AUTO
+      - SG AUTO
+      - JP AUTO
+      - US AUTO
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Telegram.png
     name: Telegram
     type: select
@@ -211,10 +272,11 @@ proxy-groups:
     proxies:
       - PROXY
       - AUTO
+      - Bing
       - OpenAI
       - Gemini
-      - Youtube
       - Google
+      - Youtube
       - Telegram
       - HK AUTO
       - SG AUTO
@@ -224,15 +286,22 @@ proxy-groups:
     type: select
 
 rules:
+  - "RULE-SET,ad,REJECT"
+  - "RULE-SET,program_ad,REJECT"
   - "RULE-SET,private,DIRECT"
-  - "RULE-SET,bing,PROXY"
+  - "RULE-SET,program_direct,DIRECT"
+  - "RULE-SET,lan,DIRECT"
+  - "RULE-SET,NetEaseMusic,DIRECT"
+  - "RULE-SET,Download,DIRECT"
   - "RULE-SET,youtube,Youtube"
-  - "RULE-SET,copilot,PROXY"
   - "RULE-SET,bard,Gemini"
   - "RULE-SET,gemini,Gemini"
   - "RULE-SET,openai,OpenAI"
   - "RULE-SET,claude,OpenAI"
+  - "RULE-SET,copilot,PROXY"
   - "RULE-SET,steam,PROXY"
+  - "RULE-SET,bing,Bing"
+  - "RULE-SET,OneDrive,PROXY"
   - "RULE-SET,telegram_domain,Telegram"
   - "RULE-SET,telegram_ip,Telegram"
   - "RULE-SET,google_domain,Google"
@@ -240,4 +309,5 @@ rules:
   - "RULE-SET,geolocation-!cn,PROXY"
   - "RULE-SET,cn_domain,DIRECT"
   - "RULE-SET,cn_ip,DIRECT"
+  - "GEOIP,CN,DIRECT"
   - "MATCH,PROXY"
