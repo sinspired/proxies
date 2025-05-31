@@ -8,28 +8,28 @@ rule-providers:
     type: http
   ban_ad:
     url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Advertising/Advertising.yaml
-    path: ./ruleset/ad.yaml
+    path: ./ruleset/ban_ad.yaml
     behavior: classical
     interval: 86400
     format: yaml
     type: http
   ban_program_ad:
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanProgramAD.list
-    path: ./ruleset/program_ad.list
+    path: ./ruleset/ban_program_ad.list
     behavior: classical
     interval: 86400
     format: text
     type: http
   program_direct:
     url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Direct/Direct.yaml
-    path: ./ruleset/direct.list
+    path: ./ruleset/direct.yaml
     behavior: classical
     interval: 86400
     format: yaml
     type: http
   lan:
     url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Lan/Lan.yaml
-    path: ./ruleset/lan.list
+    path: ./ruleset/lan.yaml
     behavior: classical
     interval: 86400
     format: yaml
