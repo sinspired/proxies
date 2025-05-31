@@ -176,7 +176,7 @@ proxy-groups:
       - KR AUTO
       - US AUTO
       - Youtube
-  - icon: https://testingcf.jsdelivr.net/gh/sinspired/proxies@main/ico/Auto.png
+  - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     name: AUTO
