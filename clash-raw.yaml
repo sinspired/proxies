@@ -194,15 +194,6 @@ proxy-groups:
       - SG AUTO
       - JP AUTO
       - US AUTO
-  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png
-    name: Telegram
-    type: select
-    proxies:
-      - HK AUTO
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - AUTO
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
     name: Google
     type: select
@@ -225,10 +216,19 @@ proxy-groups:
       - SG AUTO
       - JP AUTO
       - DIRECT
+  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png
+    name: Telegram
+    type: select
+    proxies:
+      - HK AUTO
+      - SG AUTO
+      - JP AUTO
+      - US AUTO
+      - AUTO
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?=.*\bYoutube\b|youtube|YT|YouTube)
+    filter: (?i)(?=.*\byoutube\b|Youtube|YT|YouTube)
     name: Youtube
     type: url-test
     interval: 300
