@@ -170,11 +170,11 @@ proxy-groups:
     proxies:
       - AUTO
       - HK AUTO
+      - JP AUTO
+      - US AUTO
       - TW AUTO
       - SG AUTO
-      - JP AUTO
       - KR AUTO
-      - US AUTO
       - Youtube
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png
     include-all: true
@@ -193,24 +193,24 @@ proxy-groups:
       - PROXY
       - AUTO
       - HK AUTO
+      - JP AUTO
+      - US AUTO
       - TW AUTO
       - SG AUTO
-      - JP AUTO
       - KR AUTO
-      - US AUTO
       - Youtube
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Google.png
     name: Google
     type: select
     proxies:
       - HK AUTO
+      - AUTO
+      - JP AUTO
+      - US AUTO
       - TW AUTO
       - SG AUTO
-      - JP AUTO
       - KR AUTO
-      - US AUTO
       - Youtube
-      - AUTO
       - PROXY
   - icon: https://testingcf.jsdelivr.net/gh/sinspired/proxies@main/ico/Spotify.png
     name: Spotify
@@ -219,22 +219,22 @@ proxy-groups:
       - US AUTO
       - HK AUTO
       - PROXY
-      - AUTO
-      - TW AUTO
-      - KR AUTO
-      - SG AUTO
       - JP AUTO
+      - US AUTO
+      - TW AUTO
+      - SG AUTO
+      - KR AUTO
       - DIRECT
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Telegram.png
     name: Telegram
     type: select
     proxies:
       - HK AUTO
+      - JP AUTO
+      - US AUTO
       - TW AUTO
       - SG AUTO
-      - JP AUTO
       - KR AUTO
-      - US AUTO
       - AUTO
       - PROXY
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/OpenAI.png
@@ -246,10 +246,10 @@ proxy-groups:
     proxies:
       - HK AUTO
       - JP AUTO
+      - US AUTO
       - TW AUTO
       - SG AUTO
       - KR AUTO
-      - US AUTO
       - AUTO
   - icon: https://testingcf.jsdelivr.net/gh/sinspired/proxies@main/ico/Gemini.png
     include-all: true
@@ -260,10 +260,10 @@ proxy-groups:
     proxies:
       - HK AUTO
       - JP AUTO
+      - US AUTO
       - TW AUTO
       - SG AUTO
       - KR AUTO
-      - US AUTO
       - AUTO
   - icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png
     include-all: true
@@ -274,10 +274,10 @@ proxy-groups:
     proxies:
       - HK AUTO
       - JP AUTO
+      - US AUTO
       - TW AUTO
       - SG AUTO
       - KR AUTO
-      - US AUTO
       - AUTO
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/HK.png
     include-all: true
