@@ -170,11 +170,13 @@ proxy-groups:
     proxies:
       - AUTO
       - HK AUTO
+      - TW AUTO
       - SG AUTO
       - JP AUTO
+      - KR AUTO
       - US AUTO
       - Youtube
-  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
+  - icon: https://raw.githubusercontent.com/sinspired/proxies/main/ico/Auto.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     name: AUTO
@@ -191,21 +193,26 @@ proxy-groups:
       - PROXY
       - AUTO
       - HK AUTO
+      - TW AUTO
       - SG AUTO
       - JP AUTO
+      - KR AUTO
       - US AUTO
+      - Youtube
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
     name: Google
     type: select
     proxies:
       - PROXY
       - HK AUTO
+      - TW AUTO
       - SG AUTO
       - JP AUTO
+      - KR AUTO
       - US AUTO
       - Youtube
       - AUTO
-  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
+  - icon: https://raw.githubusercontent.com/sinspired/proxies/main/ico/Spotify.png
     name: Spotify
     type: select
     proxies:
@@ -213,6 +220,8 @@ proxy-groups:
       - HK AUTO
       - PROXY
       - AUTO
+      - TW AUTO
+      - KR AUTO
       - SG AUTO
       - JP AUTO
       - DIRECT
@@ -221,8 +230,10 @@ proxy-groups:
     type: select
     proxies:
       - HK AUTO
+      - TW AUTO
       - SG AUTO
       - JP AUTO
+      - KR AUTO
       - US AUTO
       - AUTO
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
@@ -241,10 +252,18 @@ proxy-groups:
     type: url-test
     interval: 300
     tolerance: 10
+  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/TW.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)台|新北|彰化|TW|Taiwan
+    name: TW AUTO
+    type: url-test
+    interval: 300
+    tolerance: 10
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)新加坡|Singapore|🇸🇬
+    filter: (?i)新加坡|Singapore|🇸🇬|狮城
     name: SG AUTO
     type: url-test
     interval: 300
@@ -252,15 +271,23 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)日本|Japan|🇯🇵
+    filter: (?i)日本|Japan|🇯🇵|川日|东京|大阪|泉日|埼玉|
     name: JP AUTO
+    type: url-test
+    interval: 300
+    tolerance: 10
+  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/KR.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)韩国|Korea|🇰🇷|韩|首尔|仁川
+    name: KR AUTO
     type: url-test
     interval: 300
     tolerance: 10
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)美国|USA|🇺🇸
+    filter: (?i)美国|USA|🇺🇸|States|American|凤凰城|洛杉矶|西雅图|芝加哥|纽约|美
     name: US AUTO
     type: url-test
     interval: 300
@@ -268,12 +295,12 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)Openai|openai|Open AI|OpenAI
+    filter: (?i)Openai|openai|Open AI|OpenAI|gpt|chatgpt|chat gpt
     name: OpenAI
     type: url-test
     interval: 300
     tolerance: 10
-  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
+  - icon: https://raw.githubusercontent.com/sinspired/proxies/main/ico/Gemini.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)Gemini|gemini|Gemini AI|GeminiAI
@@ -287,9 +314,6 @@ rules:
   - "RULE-SET,ban_program_ad,REJECT"
   - "RULE-SET,private,DIRECT"
   - "RULE-SET,program_direct,DIRECT"
-  - "RULE-SET,lan,DIRECT"
-  - "RULE-SET,NetEaseMusic,DIRECT"
-  - "RULE-SET,Download,DIRECT"
   - "RULE-SET,youtube,Youtube"
   - "RULE-SET,gemini,Gemini"
   - "RULE-SET,openai,OpenAI"
@@ -306,5 +330,8 @@ rules:
   - "RULE-SET,geolocation-!cn,PROXY"
   - "RULE-SET,cn_domain,DIRECT"
   - "RULE-SET,cn_ip,DIRECT"
+  - "RULE-SET,lan,DIRECT"
+  - "RULE-SET,NetEaseMusic,DIRECT"
+  - "RULE-SET,Download,DIRECT"
   - "GEOIP,CN,DIRECT"
   - "MATCH,PROXY"
