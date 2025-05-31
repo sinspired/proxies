@@ -203,7 +203,6 @@ proxy-groups:
     name: Google
     type: select
     proxies:
-      - PROXY
       - HK AUTO
       - TW AUTO
       - SG AUTO
@@ -212,6 +211,7 @@ proxy-groups:
       - US AUTO
       - Youtube
       - AUTO
+      - PROXY
   - icon: https://raw.githubusercontent.com/sinspired/proxies/main/ico/Spotify.png
     name: Spotify
     type: select
@@ -236,14 +236,49 @@ proxy-groups:
       - KR AUTO
       - US AUTO
       - AUTO
+      - PROXY
+  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)Openai|openai|Open AI|OpenAI|gpt|chatgpt|chat gpt
+    name: OpenAI
+    type: select
+    proxies:
+      - HK AUTO
+      - JP AUTO
+      - TW AUTO
+      - SG AUTO
+      - KR AUTO
+      - US AUTO
+      - AUTO
+  - icon: https://raw.githubusercontent.com/sinspired/proxies/main/ico/Gemini.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)Gemini|gemini|Gemini AI|GeminiAI
+    name: Gemini
+    type: select
+    proxies:
+      - HK AUTO
+      - JP AUTO
+      - TW AUTO
+      - SG AUTO
+      - KR AUTO
+      - US AUTO
+      - AUTO
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)(?=.*\byoutube\b|Youtube|YT|YouTube)
     name: Youtube
-    type: url-test
-    interval: 300
-    tolerance: 10
+    type: select
+    proxies:
+      - HK AUTO
+      - JP AUTO
+      - TW AUTO
+      - SG AUTO
+      - KR AUTO
+      - US AUTO
+      - AUTO
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -289,22 +324,6 @@ proxy-groups:
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)美国|USA|🇺🇸|States|American|凤凰城|洛杉矶|西雅图|芝加哥|纽约|美
     name: US AUTO
-    type: url-test
-    interval: 300
-    tolerance: 10
-  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)Openai|openai|Open AI|OpenAI|gpt|chatgpt|chat gpt
-    name: OpenAI
-    type: url-test
-    interval: 300
-    tolerance: 10
-  - icon: https://raw.githubusercontent.com/sinspired/proxies/main/ico/Gemini.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)Gemini|gemini|Gemini AI|GeminiAI
-    name: Gemini
     type: url-test
     interval: 300
     tolerance: 10
