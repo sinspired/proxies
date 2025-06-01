@@ -337,7 +337,7 @@ rules:
   - "RULE-SET,gemini,Gemini"
   - "RULE-SET,openai,OpenAI"
   - "RULE-SET,claude,OpenAI"
-  - "RULE-SET,copilot,PROXY"
+  - "RULE-SET,copilot,OpenAI"
   - "RULE-SET,steam,PROXY"
   - "RULE-SET,bing,Bing"
   - "RULE-SET,spotify,Spotify"
