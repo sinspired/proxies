@@ -13,7 +13,7 @@ https://raw.githubusercontent.com/sinspired/proxies/main/clash-raw.yaml
 CDN 加速链接：
 
 ```
-https://cdn.jsdelivr.net/gh/sinspired/proxies@main/clash-cdn.yaml
+https://testingcf.jsdelivr.net/gh/sinspired/proxies@main/clash-cdn.yaml
 ```
 
 ## ShadowRocket
@@ -27,7 +27,7 @@ https://raw.githubusercontent.com/sinspired/proxies/main/shadowrocket-raw.conf
 CDN 加速链接：
 
 ```
-https://cdn.jsdelivr.net/gh/sinspired/proxies@main/shadowrocket-cdn.conf
+https://testingcf.jsdelivr.net/gh/sinspired/proxies@main/shadowrocket-cdn.conf
 ```
 
 ## 免责声明
