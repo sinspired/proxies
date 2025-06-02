@@ -242,43 +242,25 @@ proxy-groups:
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)Openai|openai|Open AI|OpenAI|gpt|chatgpt|chat gpt
     name: OpenAI
-    type: select
-    proxies:
-      - HK AUTO
-      - JP AUTO
-      - US AUTO
-      - TW AUTO
-      - SG AUTO
-      - KR AUTO
-      - AUTO
+    type: url-test
+    interval: 300
+    tolerance: 10
   - icon: https://testingcf.jsdelivr.net/gh/sinspired/proxies@main/ico/Gemini.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)Gemini|gemini|Gemini AI|GeminiAI|bard
     name: Gemini
-    type: select
-    proxies:
-      - HK AUTO
-      - JP AUTO
-      - US AUTO
-      - TW AUTO
-      - SG AUTO
-      - KR AUTO
-      - AUTO
+    type: url-test
+    interval: 300
+    tolerance: 10
   - icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)(?=.*\byoutube\b|Youtube|YT|YouTube|解锁|media|流媒体)
     name: Youtube
-    type: select
-    proxies:
-      - HK AUTO
-      - JP AUTO
-      - US AUTO
-      - TW AUTO
-      - SG AUTO
-      - KR AUTO
-      - AUTO
+    type: url-test
+    interval: 300
+    tolerance: 10
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/HK.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
