@@ -240,7 +240,7 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)Openai|openai|Open AI|OpenAI|gpt|chatgpt|chat gpt
+    filter: (?i)Openai|openai|Open AI|OpenAI|gpt|chatgpt
     name: OpenAI
     type: url-test
     interval: 300
