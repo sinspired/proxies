@@ -10,16 +10,20 @@ def cdn_to_raw(url):
     )
     if m:
         owner, repo, branch, path = m.groups()
+        # 直接替换-cdn为-raw，兼容所有后缀
+        path = path.replace("-cdn", "-raw")
         return f"https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}"
     # fastgit
     m = re.match(r"https://raw\.fastgit\.org/([^/]+)/([^/]+)/([^/]+)/(.*)", url)
     if m:
         owner, repo, branch, path = m.groups()
+        path = path.replace("-cdn", "-raw")
         return f"https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}"
     # github.io
     m = re.match(r"https://([^.]+)\.github\.io/([^/]+)/(.*)", url)
     if m:
         user, repo, path = m.groups()
+        path = path.replace("-cdn", "-raw")
         return f"https://raw.githubusercontent.com/{user}/{repo}/main/{path}"
     return url
 
@@ -31,6 +35,8 @@ def raw_to_cdn(url):
     )
     if m:
         owner, repo, branch, path = m.groups()
+        # 直接替换-raw为-cdn，兼容所有后缀
+        path = path.replace("-raw", "-cdn")
         # github.io 反向
         if branch == "main":
             return f"https://{owner}.github.io/{repo}/{path}"
@@ -40,6 +46,7 @@ def raw_to_cdn(url):
     m = re.match(r"https://([^.]+)\.github\.io/([^/]+)/(.*)", url)
     if m:
         user, repo, path = m.groups()
+        path = path.replace("-raw", "-cdn")
         return f"https://testingcf.jsdelivr.net/gh/{user}/{repo}@main/{path}"
     return url
 
