@@ -198,7 +198,6 @@ proxy-groups:
       - TW AUTO
       - SG AUTO
       - KR AUTO
-      - AI
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
     name: Google
     type: select
