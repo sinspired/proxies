@@ -257,7 +257,7 @@ proxy-groups:
   - icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?=.*\byoutube\b|Youtube|YT|YouTube|解锁|media|流媒体)
+    filter: (?i)(?=.*\byoutube\b|Youtube|YT|YouTube|media|流媒体)
     name: Youtube
     type: url-test
     interval: 300
