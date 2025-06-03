@@ -21,6 +21,10 @@
 				"redirect": "hf-mirror.com",
 				"desc": "推理API镜像"
 			},
+			"^/chat/.*$": {
+				"redirect": "hf-mirror.com",
+				"desc": "聊天API镜像"
+			},
 			".*": {
 				"sni": "huggingface.cn"
 			}
