@@ -1,0 +1,62 @@
+{
+	"app": {
+		"theme": "system",
+		"showShutdownTip": false,
+		"closeStrategy": 2
+	},
+	"server": {
+		"intercepts": {
+			"huggingface.co": {
+				"^/datasets//.*$": {
+					"redirect": "hf-mirror.com",
+					"desc": "datasets 具体文件下载镜像"
+				},
+				"^/models/.*$": {
+					"redirect": "hf-mirror.com",
+					"desc": "models 具体文件下载镜像"
+				},
+				"^/spaces/.*$": {
+					"redirect": "hf-mirror.com",
+					"desc": "spaces 具体文件下载镜像"
+				},
+				"^/api/.*$": {
+					"redirect": "hf-mirror.com",
+					"desc": "API 镜像"
+				},
+				"^/inference-api/.*$": {
+					"redirect": "hf-mirror.com",
+					"desc": "推理API镜像"
+				}
+			},
+			"github.com": {
+				"": {
+					"redirect": "ghproxy.net/https://github.com",
+					"desc": "release文件加速下载重定向地址"
+				}
+			}
+		},
+		"dns": {
+			"speedTest": {
+				"dnsProviders": [
+					"aliyun",
+					"safe360",
+					"rubyfish"
+				]
+			}
+		}
+	},
+	"plugin": {
+		"pip": {
+			"setting": {
+				"trustedHost": "mirrors.aliyun.com",
+				"registry": "https://mirrors.aliyun.com/pypi/simple/"
+			}
+		},
+		"node": {
+			"setting": {
+				"registry": "https://registry.npmmirror.com",
+				"yarnRegistry": "https://registry.npmmirror.com"
+			}
+		}
+	}
+}

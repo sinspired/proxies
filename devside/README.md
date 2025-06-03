@@ -1,53 +1,25 @@
-# 自用配置文件
+# DevSider远程配置文件（自用）
 
-自用配置文件，适用于 Clash、Shadowrocket
-
-## Clash
-
-订阅链接：
-
-```bash
-https://raw.githubusercontent.com/sinspired/proxies/main/clash-raw.yaml
-```
-
-CDN 加速链接：
-
-```bash
-https://testingcf.jsdelivr.net/gh/sinspired/proxies@main/clash-cdn.yaml
-```
-
-## ShadowRocket
-
-订阅链接：
-
-```bash
-https://raw.githubusercontent.com/sinspired/proxies/main/shadowrocket-raw.conf
-```
-
-CDN 加速链接：
-
-```bash
-https://testingcf.jsdelivr.net/gh/sinspired/proxies@main/shadowrocket-cdn.conf
-```
-
-## DevSide远程配置
-
-订阅链接：
+## 订阅链接：
 
 ```bash
 # 全部远程配置
 https://raw.githubusercontent.com/sinspired/proxies/main/devside/all.json
+```
 
+```bash
 # 自定义配置
 https://raw.githubusercontent.com/sinspired/proxies/main/devside/custom.json
 ```
 
-CDN 加速链接：
+## CDN 加速链接：
 
 ```bash
 # 全部远程配置
 https://testingcf.jsdelivr.net/gh/sinspired/proxies@main/devside/all.json
+```
 
+```bash
 # 自定义配置
 https://testingcf.jsdelivr.net/gh/sinspired/proxies@main/devside/custom.json
 ```
