@@ -177,6 +177,7 @@ proxy-groups:
       - SG AUTO
       - KR AUTO
       - Youtube
+      - AI
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -185,8 +186,6 @@ proxy-groups:
     interval: 300
     tolerance: 10
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Bing.png
-    include-all: true
-    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     name: Bing
     type: select
     proxies:
@@ -199,7 +198,7 @@ proxy-groups:
       - TW AUTO
       - SG AUTO
       - KR AUTO
-      - Youtube
+      - AI
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
     name: Google
     type: select
@@ -238,6 +237,19 @@ proxy-groups:
       - KR AUTO
       - AUTO
       - PROXY
+  - icon: https://raw.githubusercontent.com/sinspired/proxies/main/ico/AI.png
+    name: AI
+    type: select
+    proxies:
+      - OpenAI
+      - Gemini
+      - Youtube
+      - PROXY
+      - AUTO
+      - HK AUTO
+      - US AUTO
+      - JP AUTO
+      - SG AUTO
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -319,8 +331,8 @@ rules:
   - "RULE-SET,youtube,Youtube"
   - "RULE-SET,gemini,Gemini"
   - "RULE-SET,openai,OpenAI"
-  - "RULE-SET,claude,OpenAI"
-  - "RULE-SET,copilot,OpenAI"
+  - "RULE-SET,claude,AI"
+  - "RULE-SET,copilot,AI"
   - "RULE-SET,steam,PROXY"
   - "RULE-SET,bing,Bing"
   - "RULE-SET,spotify,Spotify"
