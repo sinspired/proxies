@@ -191,6 +191,7 @@ proxy-groups:
     proxies:
       - DIRECT
       - PROXY
+      - AI
       - AUTO
       - HK AUTO
       - JP AUTO
@@ -216,6 +217,7 @@ proxy-groups:
     type: select
     proxies:
       - US AUTO
+      - Youtube
       - HK AUTO
       - PROXY
       - JP AUTO
