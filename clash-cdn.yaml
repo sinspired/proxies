@@ -243,11 +243,12 @@ proxy-groups:
       - OpenAI
       - Gemini
       - Youtube
-      - PROXY
       - AUTO
       - HK AUTO
       - US AUTO
       - JP AUTO
+      - TW AUTO
+      - KR AUTO
       - SG AUTO
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/OpenAI.png
     include-all: true
