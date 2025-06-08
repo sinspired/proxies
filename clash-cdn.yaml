@@ -326,6 +326,7 @@ proxy-groups:
     tolerance: 30
 
 rules:
+  - "RULE-SET,lan,DIRECT"
   - "RULE-SET,ban_ad,REJECT"
   - "RULE-SET,ban_program_ad,REJECT"
   - "RULE-SET,private,DIRECT"
@@ -346,7 +347,6 @@ rules:
   - "RULE-SET,geolocation-!cn,PROXY"
   - "RULE-SET,cn_domain,DIRECT"
   - "RULE-SET,cn_ip,DIRECT"
-  - "RULE-SET,lan,DIRECT"
   - "RULE-SET,NetEaseMusic,DIRECT"
   - "RULE-SET,Download,DIRECT"
   - "GEOIP,CN,DIRECT"
