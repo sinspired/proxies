@@ -164,7 +164,7 @@ rule-providers:
 
 proxy-groups:
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Static.png
-    include-all: true
+    include-all: false
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     name: PROXY
     type: select
@@ -183,7 +183,7 @@ proxy-groups:
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     name: AUTO
     type: url-test
-    interval: 300
+    interval: 600
     tolerance: 30
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Bing.png
     name: Bing
@@ -203,6 +203,8 @@ proxy-groups:
     name: Google
     type: select
     proxies:
+      - PROXY
+      - Youtube
       - HK AUTO
       - AUTO
       - JP AUTO
@@ -210,8 +212,6 @@ proxy-groups:
       - TW AUTO
       - SG AUTO
       - KR AUTO
-      - Youtube
-      - PROXY
   - icon: https://testingcf.jsdelivr.net/gh/sinspired/proxies@main/ico/Spotify.png
     name: Spotify
     type: select
@@ -221,7 +221,6 @@ proxy-groups:
       - HK AUTO
       - PROXY
       - JP AUTO
-      - US AUTO
       - TW AUTO
       - SG AUTO
       - KR AUTO
@@ -245,36 +244,30 @@ proxy-groups:
       - OpenAI
       - Gemini
       - Youtube
-      - AUTO
-      - HK AUTO
-      - US AUTO
-      - JP AUTO
-      - TW AUTO
-      - KR AUTO
-      - SG AUTO
+      - PROXY
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/OpenAI.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)Openai|openai|Open AI|OpenAI|gpt|chatgpt
+    filter: (?i)(?=.*\bOpenai\b|openai|chatgpt|gpt)^(?=.*(港|台|美|日|韩|新|阿拉伯|德|芬兰|KR|SG|CMCC|CT|GB))^.*$
     name: OpenAI
     type: url-test
-    interval: 300
+    interval: 600
     tolerance: 30
   - icon: https://testingcf.jsdelivr.net/gh/sinspired/proxies@main/ico/Gemini.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)Gemini|gemini|Gemini AI|GeminiAI|bard
+    filter: (?i)(?=.*\bGemini\b|gemini|GEMINI)^(?=.*(港|台|日|美|韩|新|阿拉伯|德|芬兰|HK|TW|JP|US|KR|SG|CMCC|CT|GB))^.*$
     name: Gemini
     type: url-test
-    interval: 300
+    interval: 600
     tolerance: 30
   - icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?=.*\byoutube\b|Youtube|YT|YouTube|media|流媒体)
+    filter: (?i)(?=.*\bYoutube\b|youtube|YT|YouTube|流媒体)^(?=.*(港|台|日|美|韩|新|阿拉伯|德|芬兰|HK|TW|JP|US|KR|SG|CMCC|CT|GB))^.*$
     name: Youtube
     type: url-test
-    interval: 300
+    interval: 600
     tolerance: 30
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/HK.png
     include-all: true
@@ -282,7 +275,7 @@ proxy-groups:
     filter: (?i)香港|Hong Kong|HK|🇭🇰
     name: HK AUTO
     type: url-test
-    interval: 300
+    interval: 600
     tolerance: 30
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/TW.png
     include-all: true
@@ -290,7 +283,7 @@ proxy-groups:
     filter: (?i)台|新北|彰化|TW|Taiwan
     name: TW AUTO
     type: url-test
-    interval: 300
+    interval: 600
     tolerance: 30
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/SG.png
     include-all: true
@@ -298,7 +291,7 @@ proxy-groups:
     filter: (?i)新加坡|Singapore|🇸🇬|狮城
     name: SG AUTO
     type: url-test
-    interval: 300
+    interval: 600
     tolerance: 30
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/JP.png
     include-all: true
@@ -306,7 +299,7 @@ proxy-groups:
     filter: (?i)日本|Japan|🇯🇵|川日|东京|大阪|泉日|埼玉|Tokyo
     name: JP AUTO
     type: url-test
-    interval: 300
+    interval: 600
     tolerance: 30
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/KR.png
     include-all: true
@@ -314,7 +307,7 @@ proxy-groups:
     filter: (?i)韩国|Korea|🇰🇷|韩|首尔|仁川
     name: KR AUTO
     type: url-test
-    interval: 300
+    interval: 600
     tolerance: 30
   - icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/US.png
     include-all: true
@@ -322,7 +315,7 @@ proxy-groups:
     filter: (?i)美国|USA|🇺🇸|States|American|凤凰城|洛杉矶|西雅图|芝加哥|纽约|美
     name: US AUTO
     type: url-test
-    interval: 300
+    interval: 600
     tolerance: 30
 
 rules:
