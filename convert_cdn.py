@@ -65,7 +65,7 @@ def process_file(filename):
     with open(filename, encoding="utf-8") as f:
         content = f.read()
 
-    # 先去除所有 github 代理前缀
+    # 去除所有 github 代理前缀
     content = re.sub(r"https://ghproxy\.net/", "", content)
 
     if mode == "cdn2raw":
