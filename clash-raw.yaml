@@ -1,4 +1,4 @@
-# update: 20250603
+# update: 20250608
 rule-providers:
   private:
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.yaml
