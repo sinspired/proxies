@@ -1,9 +1,145 @@
-# update: 2025-06-09 11:17:09
+# update: 2025-06-09 22:19:12
+
+### 全局配置
+mixed-port: 7897
+allow-lan: true
+mode: rule
+log-level: info
+ipv6: true
+find-process-mode: strict
+unified-delay: true
+tcp-concurrent: true
+global-client-fingerprint: chrome
+geo-auto-update: true  # 启用地理库自动更新
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+hosts:
+  dns.alidns.com: [223.5.5.5,2400:3200:baba::1, 223.6.6.6]
+
+dns:
+  enable: true
+  listen: '0.0.0.0:1053'
+  ipv6: true
+  ipv6-timeout: 100
+  prefer-h3: true
+  use-hosts: true
+  use-system-hosts: true
+  respect-rules: false
+  enhanced-mode: 'fake-ip'
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.local"
+    - "*.lan"
+    - "*.localdomain"
+    - "*.home.arpa"
+    - "*.test"
+    - "*.invalid"
+    - "*.example"
+    - dns.msftncsi.com
+    - "*.srv.nintendo.net"
+    - "*.stun.playstation.net"
+    - "*.turn.twilio.com"
+    - "*.stun.twilio.com"
+    - stun.syncthing.net
+    - stun.*
+    - "*.sslip.io"
+    - "*.nip.io"
+    - +.$injections.adguard.org
+    - +.$local.adguard.org
+    - +.+bogon
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  nameserver:
+    - 'https://dns.alidns.com/dns-query#h3=true'
+    - 'https://doh.pub/dns-query#h3=true'
+    - 'quic://dns.alidns.com/dns-query'
+  proxy-server-nameserver:
+    - 'https://1.1.1.1/dns-query#h3=true'
+    - 'https://dns.google/dns-query#h3=true'
+  fallback:
+    - 'https://1.1.1.1/dns-query#h3=true'
+    - 'https://dns.google/dns-query#h3=true'
+    - 'https://doh.sb/dns-query#h3=true'
+  nameserver-policy:
+    'rule-set:private':
+      - 'https://dns.alidns.com/dns-query'
+    'geosite:private':
+      - 'https://dns.alidns.com/dns-query'
+    'geosite:apple':
+      - 'https://dns.alidns.com/dns-query'
+    'geosite:steam':
+      - 'https://dns.alidns.com/dns-query'
+    'geosite:cn':
+      - 'https://dns.alidns.com/dns-query'
+
+tun:
+  enable: true
+  stack: system
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  strict-route: true
+  mtu: 1500
+
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+    SNELL:
+      ports: [443]
+  force-domain:
+    - +.v2ex.com
+    - +.netflix.com
+    - +.amazonaws.com
+  skip-domain:
+    - Mijia Cloud
+    - '*.apple.com'
+    - '*.icloud.com'
+    - '*.local'
+    - '*.lan'
+    - '*.localdomain'
+    - '*.home.arpa'
+  skip-src-address:
+    - 192.168.0.0/16
+    - 10.0.0.0/8
+    - 172.16.0.0/12
+    - 127.0.0.0/8
+    - fc00::/7
+    - fe80::/10
+  skip-dst-address:
+    - 192.168.0.0/16
+    - 10.0.0.0/8
+    - 172.16.0.0/12
+    - 127.0.0.0/8
+    - fc00::/7
+    - fe80::/10
+
 rule-providers:
   private:
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.yaml
     path: ./ruleset/private.yaml
     behavior: domain
+    interval: 86400
+    format: yaml
+    type: http
+  unBanAD:
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.yaml
+    path: ./ruleset/direct.yaml
+    behavior: classical
     interval: 86400
     format: yaml
     type: http
@@ -21,13 +157,7 @@ rule-providers:
     interval: 86400
     format: text
     type: http
-  program_direct:
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.yaml
-    path: ./ruleset/direct.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
+
   lan:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.yaml
     path: ./ruleset/lan.yaml
@@ -185,6 +315,19 @@ proxy-groups:
     type: url-test
     interval: 600
     tolerance: 30
+  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
+    name: Google
+    type: select
+    proxies:
+      - PROXY
+      - Youtube
+      - HK AUTO
+      - AUTO
+      - JP AUTO
+      - US AUTO
+      - TW AUTO
+      - SG AUTO
+      - KR AUTO
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Bing.png
     name: Bing
     type: select
@@ -194,19 +337,6 @@ proxy-groups:
       - AI
       - AUTO
       - HK AUTO
-      - JP AUTO
-      - US AUTO
-      - TW AUTO
-      - SG AUTO
-      - KR AUTO
-  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
-    name: Google
-    type: select
-    proxies:
-      - PROXY
-      - Youtube
-      - HK AUTO
-      - AUTO
       - JP AUTO
       - US AUTO
       - TW AUTO
@@ -319,28 +449,31 @@ proxy-groups:
     tolerance: 30
 
 rules:
+  # 域名/URL 规则优先
   - "RULE-SET,lan,DIRECT"
+  - "RULE-SET,private,DIRECT"
+  - "RULE-SET,unBanAD,DIRECT"
   - "RULE-SET,ban_ad,REJECT"
   - "RULE-SET,ban_program_ad,REJECT"
-  - "RULE-SET,private,DIRECT"
-  - "RULE-SET,program_direct,DIRECT"
-  - "RULE-SET,bing,Bing"
   - "RULE-SET,youtube,Youtube"
   - "RULE-SET,gemini,Gemini"
   - "RULE-SET,openai,OpenAI"
   - "RULE-SET,claude,AI"
   - "RULE-SET,copilot,AI"
+  - "RULE-SET,bing,Bing"
   - "RULE-SET,steam,PROXY"
   - "RULE-SET,spotify,Spotify"
   - "RULE-SET,OneDrive,PROXY"
   - "RULE-SET,telegram_domain,Telegram"
-  - "RULE-SET,telegram_ip,Telegram"
   - "RULE-SET,google_domain,Google"
-  - "RULE-SET,google_ip,Google"
   - "RULE-SET,geolocation-!cn,PROXY"
   - "RULE-SET,cn_domain,DIRECT"
-  - "RULE-SET,cn_ip,DIRECT"
   - "RULE-SET,NetEaseMusic,DIRECT"
   - "RULE-SET,Download,DIRECT"
+  # IP 规则
+  - "RULE-SET,telegram_ip,Telegram"
+  - "RULE-SET,google_ip,Google"
+  - "RULE-SET,cn_ip,DIRECT"
   - "GEOIP,CN,DIRECT"
+  # 最终兜底
   - "MATCH,PROXY"
