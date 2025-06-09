@@ -1,40 +1,14 @@
-# update: 2025-06-09 22:37:00
+# update: 2025-06-09 22:48:09
 
 ### 全局配置
-mixed-port: 7890 # 混合端口 同时支持 HTTP(S) 和 SOCKS5 协议
-mode: rule
-log-level: info
-ipv6: true
-find-process-mode: strict
-unified-delay: true
-tcp-concurrent: true
-global-client-fingerprint: chrome
-geo-auto-update: true  # 启用地理库自动更新
-
-allow-lan: true
-authentication: # 用户验证 http(s)/socks/mixed 代理的用户验证
-  - 'clash:clash' # 用户:密码
-skip-auth-prefixes: # 跳过验证的 IP 段
-  - '127.0.0.1/8'
-  - '::1/128'
-
-external-ui: './ui' # 外部用户界面的路径
-external-ui-url: 'https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip' # 自定义外部用户界面下载地址
-external-controller: '0.0.0.0:9090' # API 监听地址
-secret: 'clash' # API 的访问密钥
-
 profile:
   store-selected: true
   store-fake-ip: true
-
-hosts:
-  dns.alidns.com: [223.5.5.5,2400:3200:baba::1, 223.6.6.6]
 
 dns:
   enable: true
   listen: '0.0.0.0:1053'
   ipv6: true
-  ipv6-timeout: 100
   prefer-h3: true
   use-hosts: true
   use-system-hosts: true
@@ -49,102 +23,19 @@ dns:
     - "*.test"
     - "*.invalid"
     - "*.example"
-    - dns.msftncsi.com
-    - "*.srv.nintendo.net"
-    - "*.stun.playstation.net"
-    - "*.turn.twilio.com"
-    - "*.stun.twilio.com"
-    - stun.syncthing.net
-    - stun.*
-    - "*.sslip.io"
-    - "*.nip.io"
-    - +.$injections.adguard.org
-    - +.$local.adguard.org
-    - +.+bogon
   dns-hijack:
     - any:53
     - tcp://any:53
   nameserver:
-    - 'https://dns.alidns.com/dns-query#h3=true'
-    - 'https://doh.pub/dns-query#h3=true'
+    - 'https://dns.alidns.com/dns-query'
     - 'quic://dns.alidns.com/dns-query'
+    - 'https://doh.pub/dns-query'
   proxy-server-nameserver:
-    - 'https://1.1.1.1/dns-query#h3=true'
-    - 'https://dns.google/dns-query#h3=true'
+    - 'https://dns.alidns.com/dns-query'
+    - 'https://doh.sb/dns-query'
   fallback:
-    - 'https://1.1.1.1/dns-query#h3=true'
-    - 'https://dns.google/dns-query#h3=true'
-    - 'https://doh.sb/dns-query#h3=true'
-  nameserver-policy:
-    'rule-set:private':
-      - 'https://dns.alidns.com/dns-query'
-    'geosite:private':
-      - 'https://dns.alidns.com/dns-query'
-    'geosite:apple':
-      - 'https://dns.alidns.com/dns-query'
-    'geosite:steam':
-      - 'https://dns.alidns.com/dns-query'
-    'geosite:cn':
-      - 'https://dns.alidns.com/dns-query'
-
-tun:
-  enable: true
-  stack: system  # tun 模式堆栈 system/gvisor/mixed
-  auto-route: true
-  auto-detect-interface: true
-  dns-hijack:
-    - any:53
-    - tcp://any:53
-  strict-route: true
-  mtu: 1500
-  route-address: # 启用 auto-route 时使用自定义路由而不是默认路由
-    - '0.0.0.0/1'
-    - '128.0.0.0/1'
-    - '::/1'
-    - '8000::/1'
-  route-exclude-address: # 启用 auto-route 时排除自定义网段
-    - '192.168.0.0/16'
-    - 'fc00::/7'
-
-sniffer:
-  enable: true
-  force-dns-mapping: true
-  parse-pure-ip: true
-  sniff:
-    HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true
-    TLS:
-      ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
-  force-domain:
-    - +.v2ex.com
-    - +.netflix.com
-    - +.amazonaws.com
-  skip-domain:
-    - Mijia Cloud
-    - '*.apple.com'
-    - '*.icloud.com'
-    - '*.local'
-    - '*.lan'
-    - '*.localdomain'
-    - '*.home.arpa'
-  skip-src-address:
-    - 192.168.0.0/16
-    - 10.0.0.0/8
-    - 172.16.0.0/12
-    - 127.0.0.0/8
-    - fc00::/7
-    - fe80::/10
-  skip-dst-address:
-    - 192.168.0.0/16
-    - 10.0.0.0/8
-    - 172.16.0.0/12
-    - 127.0.0.0/8
-    - fc00::/7
-    - fe80::/10
-
+    - 'https://1.1.1.1/dns-query'
+    - 'https://doh.sb/dns-query'
 
 
 rule-providers:
