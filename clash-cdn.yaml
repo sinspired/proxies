@@ -1,4 +1,4 @@
-# update: 2025-06-09 22:19:12
+# update: 2025-06-09 22:20:15
 
 ### 全局配置
 mixed-port: 7897
@@ -56,6 +56,7 @@ dns:
   nameserver:
     - 'https://dns.alidns.com/dns-query#h3=true'
     - 'https://doh.pub/dns-query#h3=true'
+    - 'quic://dns.alidns.com/dns-query'
   proxy-server-nameserver:
     - 'https://1.1.1.1/dns-query#h3=true'
     - 'https://dns.google/dns-query#h3=true'
