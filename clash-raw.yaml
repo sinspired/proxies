@@ -1,4 +1,4 @@
-# update: 20250608
+# update: 2025-06-09 11:17:09
 rule-providers:
   private:
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.yaml
@@ -324,13 +324,13 @@ rules:
   - "RULE-SET,ban_program_ad,REJECT"
   - "RULE-SET,private,DIRECT"
   - "RULE-SET,program_direct,DIRECT"
+  - "RULE-SET,bing,Bing"
   - "RULE-SET,youtube,Youtube"
   - "RULE-SET,gemini,Gemini"
   - "RULE-SET,openai,OpenAI"
   - "RULE-SET,claude,AI"
   - "RULE-SET,copilot,AI"
   - "RULE-SET,steam,PROXY"
-  - "RULE-SET,bing,Bing"
   - "RULE-SET,spotify,Spotify"
   - "RULE-SET,OneDrive,PROXY"
   - "RULE-SET,telegram_domain,Telegram"
