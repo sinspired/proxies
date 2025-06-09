@@ -1,8 +1,7 @@
-# update: 2025-06-09 22:30:19
+# update: 2025-06-09 22:37:00
 
 ### 全局配置
-mixed-port: 7890
-allow-lan: true
+mixed-port: 7890 # 混合端口 同时支持 HTTP(S) 和 SOCKS5 协议
 mode: rule
 log-level: info
 ipv6: true
@@ -11,6 +10,18 @@ unified-delay: true
 tcp-concurrent: true
 global-client-fingerprint: chrome
 geo-auto-update: true  # 启用地理库自动更新
+
+allow-lan: true
+authentication: # 用户验证 http(s)/socks/mixed 代理的用户验证
+  - 'clash:clash' # 用户:密码
+skip-auth-prefixes: # 跳过验证的 IP 段
+  - '127.0.0.1/8'
+  - '::1/128'
+
+external-ui: './ui' # 外部用户界面的路径
+external-ui-url: 'https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip' # 自定义外部用户界面下载地址
+external-controller: '0.0.0.0:9090' # API 监听地址
+secret: 'clash' # API 的访问密钥
 
 profile:
   store-selected: true
@@ -78,7 +89,7 @@ dns:
 
 tun:
   enable: true
-  stack: system
+  stack: system  # tun 模式堆栈 system/gvisor/mixed
   auto-route: true
   auto-detect-interface: true
   dns-hijack:
@@ -86,6 +97,14 @@ tun:
     - tcp://any:53
   strict-route: true
   mtu: 1500
+  route-address: # 启用 auto-route 时使用自定义路由而不是默认路由
+    - '0.0.0.0/1'
+    - '128.0.0.0/1'
+    - '::/1'
+    - '8000::/1'
+  route-exclude-address: # 启用 auto-route 时排除自定义网段
+    - '192.168.0.0/16'
+    - 'fc00::/7'
 
 sniffer:
   enable: true
