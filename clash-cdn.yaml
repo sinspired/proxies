@@ -1,4 +1,4 @@
-# update: 2025-06-09 22:48:09
+# update: 2025-06-09 22:49:46
 
 ### 全局配置
 profile:
@@ -7,13 +7,13 @@ profile:
 
 dns:
   enable: true
-  listen: '0.0.0.0:1053'
+  listen: "0.0.0.0:1053"
   ipv6: true
   prefer-h3: true
   use-hosts: true
   use-system-hosts: true
   respect-rules: false
-  enhanced-mode: 'fake-ip'
+  enhanced-mode: "fake-ip"
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - "*.local"
@@ -27,16 +27,15 @@ dns:
     - any:53
     - tcp://any:53
   nameserver:
-    - 'https://dns.alidns.com/dns-query'
-    - 'quic://dns.alidns.com/dns-query'
-    - 'https://doh.pub/dns-query'
+    - "https://dns.alidns.com/dns-query"
+    - "quic://dns.alidns.com/dns-query"
+    - "https://doh.pub/dns-query"
   proxy-server-nameserver:
-    - 'https://dns.alidns.com/dns-query'
-    - 'https://doh.sb/dns-query'
+    - "https://dns.alidns.com/dns-query"
+    - "https://doh.sb/dns-query"
   fallback:
-    - 'https://1.1.1.1/dns-query'
-    - 'https://doh.sb/dns-query'
-
+    - "https://1.1.1.1/dns-query"
+    - "https://doh.sb/dns-query"
 
 rule-providers:
   private:
@@ -387,5 +386,3 @@ rules:
   - "GEOIP,CN,DIRECT"
   # 最终兜底
   - "MATCH,PROXY"
-
-
