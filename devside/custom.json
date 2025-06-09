@@ -1,27 +1,27 @@
 {
+    "dns.google": {
+        "/dns-reslove": {
+            "redirect": "dns.alidns.com",
+            "desc": "dns.google to dns.alidns.com"
+        },
+        "/resolve": {
+            "redirect": "223.5.5.5",
+            "desc": "dns.google to dns.alidns.com"
+        }
+    },
     "huggingface.co": {
+        "/models": {
+            "redirect": "hf-mirror.com",
+            "desc": "模型页面使用镜像地址"
+        },
         ".*": {
             "sni": "huggingface.cn"
-        },
-        "^/datasets//.*$": {
+        }
+    },
+    "cas-bridge.xethub.hf.co": {
+        ".*": {
             "redirect": "hf-mirror.com",
-            "desc": "datasets 具体文件下载镜像"
-        },
-        "^/models/.*$": {
-            "redirect": "hf-mirror.com",
-            "desc": "models 具体文件下载镜像"
-        },
-        "^/spaces/.*$": {
-            "redirect": "hf-mirror.com",
-            "desc": "spaces 具体文件下载镜像"
-        },
-        "^/api/.*$": {
-            "redirect": "hf-mirror.com",
-            "desc": "API 镜像"
-        },
-        "^/inference-api/.*$": {
-            "redirect": "hf-mirror.com",
-            "desc": "推理API镜像"
+            "sni": "huggingface.cn"
         }
     },
     "github.com": {
