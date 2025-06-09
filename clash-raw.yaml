@@ -1,7 +1,7 @@
-# update: 2025-06-09 22:20:15
+# update: 2025-06-09 22:30:19
 
 ### 全局配置
-mixed-port: 7897
+mixed-port: 7890
 allow-lan: true
 mode: rule
 log-level: info
@@ -99,8 +99,6 @@ sniffer:
       ports: [443, 8443]
     QUIC:
       ports: [443, 8443]
-    SNELL:
-      ports: [443]
   force-domain:
     - +.v2ex.com
     - +.netflix.com
@@ -127,6 +125,8 @@ sniffer:
     - 127.0.0.0/8
     - fc00::/7
     - fe80::/10
+
+
 
 rule-providers:
   private:
@@ -477,3 +477,5 @@ rules:
   - "GEOIP,CN,DIRECT"
   # 最终兜底
   - "MATCH,PROXY"
+
+
