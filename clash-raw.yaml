@@ -1,4 +1,4 @@
-# update: 2025-06-09 22:49:46
+# update: 2025-06-10 12:53:45
 
 ### 全局配置
 profile:
@@ -29,13 +29,12 @@ dns:
   nameserver:
     - "https://dns.alidns.com/dns-query"
     - "quic://dns.alidns.com/dns-query"
-    - "https://doh.pub/dns-query"
   proxy-server-nameserver:
     - "https://dns.alidns.com/dns-query"
     - "https://doh.sb/dns-query"
   fallback:
-    - "https://1.1.1.1/dns-query"
     - "https://doh.sb/dns-query"
+    - "https://1.1.1.1/dns-query" 
 
 rule-providers:
   private:
@@ -209,6 +208,7 @@ proxy-groups:
     type: select
     proxies:
       - AUTO
+      - SELECT
       - HK AUTO
       - JP AUTO
       - US AUTO
@@ -217,26 +217,11 @@ proxy-groups:
       - KR AUTO
       - Youtube
       - AI
-  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
+  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Available.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    name: AUTO
-    type: url-test
-    interval: 600
-    tolerance: 30
-  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
-    name: Google
+    name: SELECT
     type: select
-    proxies:
-      - PROXY
-      - Youtube
-      - HK AUTO
-      - AUTO
-      - JP AUTO
-      - US AUTO
-      - TW AUTO
-      - SG AUTO
-      - KR AUTO
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Bing.png
     name: Bing
     type: select
@@ -246,6 +231,19 @@ proxy-groups:
       - AI
       - AUTO
       - HK AUTO
+      - JP AUTO
+      - US AUTO
+      - TW AUTO
+      - SG AUTO
+      - KR AUTO
+  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
+    name: Google
+    type: select
+    proxies:
+      - PROXY
+      - Youtube
+      - HK AUTO
+      - AUTO
       - JP AUTO
       - US AUTO
       - TW AUTO
@@ -284,6 +282,13 @@ proxy-groups:
       - Gemini
       - Youtube
       - AUTO
+  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
+    include-all: true
+    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    name: AUTO
+    type: url-test
+    interval: 600
+    tolerance: 30
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -368,8 +373,8 @@ rules:
   - "RULE-SET,gemini,Gemini"
   - "RULE-SET,openai,OpenAI"
   - "RULE-SET,claude,AI"
-  - "RULE-SET,copilot,AI"
   - "RULE-SET,bing,Bing"
+  - "RULE-SET,copilot,AI"
   - "RULE-SET,steam,PROXY"
   - "RULE-SET,spotify,Spotify"
   - "RULE-SET,OneDrive,PROXY"
