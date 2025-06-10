@@ -1,4 +1,4 @@
-# update: 2025-06-10 12:53:45
+# update: 2025-06-10 12:59:28
 
 ### 全局配置
 profile:
@@ -287,80 +287,80 @@ proxy-groups:
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     name: AUTO
     type: url-test
-    interval: 600
-    tolerance: 30
+    interval: 300
+    tolerance: 50
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)(?=.*\bOpenai\b|openai|chatgpt|gpt)^(?=.*(港|台|美|日|韩|新|阿拉伯|德|芬兰|KR|SG|CMCC|CT|GB))^.*$
     name: OpenAI
     type: url-test
-    interval: 600
-    tolerance: 30
+    interval: 300
+    tolerance: 50
   - icon: https://raw.githubusercontent.com/sinspired/proxies/main/ico/Gemini.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)(?=.*\bGemini\b|gemini|GEMINI)^(?=.*(港|台|日|美|韩|新|阿拉伯|德|芬兰|HK|TW|JP|US|KR|SG|CMCC|CT|GB))^.*$
     name: Gemini
     type: url-test
-    interval: 600
-    tolerance: 30
+    interval: 300
+    tolerance: 50
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)(?=.*\bYoutube\b|youtube|YT|YouTube|流媒体)^(?=.*(港|台|日|美|韩|新|阿拉伯|德|芬兰|HK|TW|JP|US|KR|SG|CMCC|CT|GB))^.*$
     name: Youtube
     type: url-test
-    interval: 600
-    tolerance: 30
+    interval: 300
+    tolerance: 50
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)香港|Hong Kong|HK|🇭🇰
     name: HK AUTO
     type: url-test
-    interval: 600
-    tolerance: 30
+    interval: 300
+    tolerance: 50
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/TW.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)台|新北|彰化|TW|Taiwan
     name: TW AUTO
     type: url-test
-    interval: 600
-    tolerance: 30
+    interval: 300
+    tolerance: 50
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)新加坡|Singapore|🇸🇬|狮城
     name: SG AUTO
     type: url-test
-    interval: 600
-    tolerance: 30
+    interval: 300
+    tolerance: 50
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)日本|Japan|🇯🇵|川日|东京|大阪|泉日|埼玉|Tokyo
     name: JP AUTO
     type: url-test
-    interval: 600
-    tolerance: 30
+    interval: 300
+    tolerance: 50
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/KR.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)韩国|Korea|🇰🇷|韩|首尔|仁川
     name: KR AUTO
     type: url-test
-    interval: 600
-    tolerance: 30
+    interval: 300
+    tolerance: 50
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)美国|USA|🇺🇸|States|American|凤凰城|洛杉矶|西雅图|芝加哥|纽约|美
     name: US AUTO
     type: url-test
-    interval: 600
-    tolerance: 30
+    interval: 300
+    tolerance: 50
 
 rules:
   # 域名/URL 规则优先
