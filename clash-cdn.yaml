@@ -1,4 +1,4 @@
-# update: 2025-06-10 12:59:28
+# update: 2025-06-15 17:54:43
 
 ### 全局配置
 profile:
@@ -27,14 +27,14 @@ dns:
     - any:53
     - tcp://any:53
   nameserver:
-    - "https://dns.alidns.com/dns-query"
-    - "quic://dns.alidns.com/dns-query"
+    - "https://dns.alidns.com/dns-query" 
+    - "quic://223.6.6.6"
   proxy-server-nameserver:
     - "https://dns.alidns.com/dns-query"
-    - "https://doh.sb/dns-query"
+    - "114.114.114.114"
   fallback:
-    - "https://doh.sb/dns-query"
-    - "https://1.1.1.1/dns-query" 
+    - "8.8.8.8"
+    - "114.114.114.114" 
 
 rule-providers:
   private:
