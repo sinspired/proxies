@@ -1,4 +1,4 @@
-# update: 2025-07-21 23:12:46
+# update: 2025-07-22 00:54:24
 
 ### 全局配置
 profile:
@@ -202,6 +202,13 @@ rule-providers:
   Download:
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list
     path: ./ruleset/Download.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+  cloudflare:
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/classical/cloudflare.yaml
+    path: ./ruleset/cloudflare.list
     behavior: classical
     interval: 86400
     format: text
@@ -455,6 +462,7 @@ rules:
   - "RULE-SET,claude,AI"
   - "RULE-SET,bing,Bing"
   - "RULE-SET,copilot,AI"
+  - "RULE-SET,cloudflare,OpenAI"
   - "RULE-SET,steam,PROXY"
   - "RULE-SET,spotify,Spotify"
   - "RULE-SET,OneDrive,PROXY"
