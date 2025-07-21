@@ -1,4 +1,4 @@
-# update: 2025-07-22 01:45:38
+# update: 2025-07-22 01:47:11
 
 ### 全局配置
 profile:
@@ -213,7 +213,7 @@ rule-providers:
     interval: 86400
     format: yaml
     type: http
-  cloudflareCN:
+  cloudflare-cn:
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare-cn.yaml
     path: ./ruleset/cloudflare-cn.yaml
     behavior: domain
@@ -469,7 +469,7 @@ rules:
   - "RULE-SET,bing,Bing"
   - "RULE-SET,copilot,AI"
   - "RULE-SET,cloudflare,OpenAI"
-  - "RULE-SET,cloudflareCN,DIRECT"
+  - "RULE-SET,cloudflare-cn,DIRECT"
   - "RULE-SET,steam,PROXY"
   - "RULE-SET,spotify,Spotify"
   - "RULE-SET,OneDrive,PROXY"
