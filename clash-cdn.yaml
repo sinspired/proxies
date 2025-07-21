@@ -1,4 +1,4 @@
-# update: 2025-07-22 01:20:19
+# update: 2025-07-22 01:32:04
 
 ### 全局配置
 profile:
@@ -208,6 +208,13 @@ rule-providers:
     type: http
   cloudflare:
     url: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cloudflare.yaml
+    path: ./ruleset/cloudflare.list
+    behavior: domain
+    interval: 86400
+    format: yaml
+    type: http
+  cloudflareCN:
+    url: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cloudflare-cn.yaml
     path: ./ruleset/cloudflare.list
     behavior: domain
     interval: 86400
@@ -462,6 +469,7 @@ rules:
   - "RULE-SET,bing,Bing"
   - "RULE-SET,copilot,AI"
   - "RULE-SET,cloudflare,OpenAI"
+  - "RULE-SET,cloudflareCN,DIRECT"
   - "RULE-SET,steam,PROXY"
   - "RULE-SET,spotify,Spotify"
   - "RULE-SET,OneDrive,PROXY"
