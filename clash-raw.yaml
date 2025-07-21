@@ -223,7 +223,6 @@ proxy-groups:
       - US AUTO
       - AI
       - TikTok
-      - Youtube
       - 手动选择
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/TikTok.png
     include-all: false
