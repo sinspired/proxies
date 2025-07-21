@@ -381,7 +381,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
-    # include-all: true
+    include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)(?=.*\bTK\b|tiktok|抖音国际版|跨境电商)
     name: TIKTOK-SELECT
