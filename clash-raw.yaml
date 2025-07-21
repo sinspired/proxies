@@ -237,7 +237,7 @@ proxy-groups:
       - TIKTOK-KR 
       - TIKTOK-SG
       - TIKTOK-TW
-      - TIKTOK-SELECT
+      - 手动选择|TT
       # - TIKTOK-CA 
       # - TIKTOK-DE
       # - TIKTOK-NL
@@ -246,6 +246,14 @@ proxy-groups:
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     name: 手动选择
+    type: select
+    proxies:
+      - AUTO
+  - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
+    include-all: true
+    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)(?=.*\bTK\b|tiktok|抖音国际版|跨境电商)
+    name: 手动选择|TT
     type: select
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
     include-all: true
@@ -380,12 +388,6 @@ proxy-groups:
     type: url-test
     interval: 300
     tolerance: 50
-  - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
-    include-all: true
-    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?=.*\bTK\b|tiktok|抖音国际版|跨境电商)
-    name: TIKTOK-SELECT
-    type: select
 
 # 地区筛选
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
