@@ -1,4 +1,4 @@
-# update: 2025-07-22 01:47:11
+# update: 2025-07-22 01:52:12
 
 ### 全局配置
 profile:
@@ -468,8 +468,8 @@ rules:
   - "RULE-SET,claude,AI"
   - "RULE-SET,bing,Bing"
   - "RULE-SET,copilot,AI"
-  - "RULE-SET,cloudflare,OpenAI"
   - "RULE-SET,cloudflare-cn,DIRECT"
+  - "RULE-SET,cloudflare,OpenAI"
   - "RULE-SET,steam,PROXY"
   - "RULE-SET,spotify,Spotify"
   - "RULE-SET,OneDrive,PROXY"
