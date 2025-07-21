@@ -1,4 +1,4 @@
-# update: 2025-07-21 20:56:13
+# update: 2025-07-21 22:08:00
 
 ### 全局配置
 profile:
@@ -223,7 +223,6 @@ proxy-groups:
       - US AUTO
       - AI
       - TikTok
-      - Youtube
       - 手动选择
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/TikTok.png
     include-all: false
@@ -237,7 +236,7 @@ proxy-groups:
       - TIKTOK-KR 
       - TIKTOK-SG
       - TIKTOK-TW
-      - TIKTOK-SELECT
+      - 手动选择|TT
       # - TIKTOK-CA 
       # - TIKTOK-DE
       # - TIKTOK-NL
@@ -246,6 +245,14 @@ proxy-groups:
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     name: 手动选择
+    type: select
+    proxies:
+      - AUTO
+  - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
+    include-all: true
+    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)(?=.*\bTK\b|tiktok|抖音国际版|跨境电商)
+    name: 手动选择|TT
     type: select
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png
     include-all: true
@@ -380,12 +387,6 @@ proxy-groups:
     type: url-test
     interval: 300
     tolerance: 50
-  - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
-    include-all: true
-    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?=.*\bTK\b|tiktok|抖音国际版|跨境电商)
-    name: TIKTOK-SELECT
-    type: select
 
 # 地区筛选
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/HK.png
