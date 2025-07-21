@@ -1,4 +1,4 @@
-# update: 2025-06-15 17:54:43
+# update: 2025-07-21 20:56:13
 
 ### 全局配置
 profile:
@@ -69,6 +69,13 @@ rule-providers:
   lan:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.yaml
     path: ./ruleset/lan.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  tiktok:
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/classical/tiktok.yaml
+    path: ./ruleset/tiktok.yaml
     behavior: classical
     interval: 86400
     format: yaml
@@ -200,6 +207,7 @@ rule-providers:
     format: text
     type: http
 
+# 代理组
 proxy-groups:
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png
     include-all: false
@@ -208,20 +216,64 @@ proxy-groups:
     type: select
     proxies:
       - AUTO
-      - SELECT
+      - HK AUTO
+      - JP AUTO
+      - TW AUTO
+      - SG AUTO
+      - US AUTO
+      - AI
+      - TikTok
+      - Youtube
+      - 手动选择
+  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/TikTok.png
+    include-all: false
+    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    name: TikTok
+    type: select
+    proxies:
+      - TIKTOK-US
+      - TIKTOK-JP
+      - TIKTOK-VN
+      - TIKTOK-KR 
+      - TIKTOK-SG
+      - TIKTOK-TW
+      - TIKTOK-SELECT
+      # - TIKTOK-CA 
+      # - TIKTOK-DE
+      # - TIKTOK-NL
+      # - TIKTOK-RU
+  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Available.png
+    include-all: true
+    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    name: 手动选择
+    type: select
+  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
+    include-all: true
+    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    name: AUTO
+    type: url-test
+    interval: 300
+    tolerance: 50
+  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
+    name: Google
+    type: select
+    proxies:
+      - PROXY
+      - Youtube
+      - AUTO
       - HK AUTO
       - JP AUTO
       - US AUTO
       - TW AUTO
       - SG AUTO
-      - KR AUTO
-      - Youtube
-      - AI
-  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Available.png
-    include-all: true
-    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    name: SELECT
+  - icon: https://raw.githubusercontent.com/sinspired/proxies/main/ico/AI.png
+    name: AI
     type: select
+    proxies:
+      - OpenAI
+      - Gemini
+      - Youtube
+      - AUTO
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Bing.png
     name: Bing
     type: select
@@ -230,37 +282,16 @@ proxy-groups:
       - PROXY
       - AI
       - AUTO
-      - HK AUTO
-      - JP AUTO
-      - US AUTO
-      - TW AUTO
-      - SG AUTO
-      - KR AUTO
-  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
-    name: Google
-    type: select
-    proxies:
-      - PROXY
-      - Youtube
-      - HK AUTO
-      - AUTO
-      - JP AUTO
-      - US AUTO
-      - TW AUTO
-      - SG AUTO
-      - KR AUTO
   - icon: https://raw.githubusercontent.com/sinspired/proxies/main/ico/Spotify.png
     name: Spotify
     type: select
     proxies:
       - US AUTO
-      - Youtube
       - HK AUTO
-      - PROXY
       - JP AUTO
       - TW AUTO
       - SG AUTO
-      - KR AUTO
+      - PROXY
       - DIRECT
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png
     name: Telegram
@@ -271,28 +302,14 @@ proxy-groups:
       - US AUTO
       - TW AUTO
       - SG AUTO
-      - KR AUTO
       - AUTO
       - PROXY
-  - icon: https://raw.githubusercontent.com/sinspired/proxies/main/ico/AI.png
-    name: AI
-    type: select
-    proxies:
-      - OpenAI
-      - Gemini
-      - Youtube
-      - AUTO
-  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
-    include-all: true
-    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    name: AUTO
-    type: url-test
-    interval: 300
-    tolerance: 50
+
+# 关键词筛选
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?=.*\bOpenai\b|openai|chatgpt|gpt)^(?=.*(港|台|美|日|韩|新|阿拉伯|德|芬兰|KR|SG|CMCC|CT|GB))^.*$
+    filter: (?i)(?=.*\bOpenai\b|openai|chatgpt|gpt|GPT)
     name: OpenAI
     type: url-test
     interval: 300
@@ -300,7 +317,7 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/sinspired/proxies/main/ico/Gemini.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?=.*\bGemini\b|gemini|GEMINI)^(?=.*(港|台|日|美|韩|新|阿拉伯|德|芬兰|HK|TW|JP|US|KR|SG|CMCC|CT|GB))^.*$
+    filter: (?i)(?=.*\bGemini\b|gemini|GEMINI|\bGM\b)
     name: Gemini
     type: url-test
     interval: 300
@@ -308,11 +325,69 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?=.*\bYoutube\b|youtube|YT|YouTube|流媒体)^(?=.*(港|台|日|美|韩|新|阿拉伯|德|芬兰|HK|TW|JP|US|KR|SG|CMCC|CT|GB))^.*$
+    filter: (?i)(?=.*\bYoutube\b|youtube|YT|YouTube|流媒体)
     name: Youtube
     type: url-test
     interval: 300
     tolerance: 50
+
+# TikTok地区筛选
+  - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
+    include-all: true
+    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)(?=.*\bTK-US\b|TK_US|TikTok-US)
+    name: TIKTOK-US
+    type: url-test
+    interval: 300
+    tolerance: 50
+  - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
+    include-all: true
+    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)(?=.*\bTK-JP\b|TK_JP|TikTok-JP)
+    name: TIKTOK-JP
+    type: url-test
+    interval: 300
+    tolerance: 50
+  - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
+    include-all: true
+    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)(?=.*\bTK-VN\b|TK_VN|TikTok-VN)
+    name: TIKTOK-VN
+    type: url-test
+    interval: 300
+    tolerance: 50
+  - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
+    include-all: true
+    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)(?=.*\bTK-KR\b|TK_KR|TikTok-KR)
+    name: TIKTOK-KR
+    type: url-test
+    interval: 300
+    tolerance: 50
+  - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
+    include-all: true
+    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)(?=.*\bTK-SG\b|TK_SG|TikTok-SG)
+    name: TIKTOK-SG
+    type: url-test
+    interval: 300
+    tolerance: 50
+  - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
+    include-all: true
+    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)(?=.*\bTK-TW\b|TK_TW|TikTok-TW)
+    name: TIKTOK-TW
+    type: url-test
+    interval: 300
+    tolerance: 50
+  - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
+    # include-all: true
+    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)(?=.*\bTK\b|tiktok|抖音国际版|跨境电商)
+    name: TIKTOK-SELECT
+    type: select
+
+# 地区筛选
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -345,14 +420,6 @@ proxy-groups:
     type: url-test
     interval: 300
     tolerance: 50
-  - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/KR.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)韩国|Korea|🇰🇷|韩|首尔|仁川
-    name: KR AUTO
-    type: url-test
-    interval: 300
-    tolerance: 50
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -361,7 +428,16 @@ proxy-groups:
     type: url-test
     interval: 300
     tolerance: 50
+  # - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/KR.png
+  #   include-all: true
+  #   exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+  #   filter: (?i)韩国|Korea|🇰🇷|韩|首尔|仁川
+  #   name: KR AUTO
+  #   type: url-test
+  #   interval: 300
+  #   tolerance: 50
 
+# 代理规则
 rules:
   # 域名/URL 规则优先
   - "RULE-SET,lan,DIRECT"
@@ -369,6 +445,7 @@ rules:
   - "RULE-SET,unBanAD,DIRECT"
   - "RULE-SET,ban_ad,REJECT"
   - "RULE-SET,ban_program_ad,REJECT"
+  - "RULE-SET,tiktok,TikTok"
   - "RULE-SET,youtube,Youtube"
   - "RULE-SET,gemini,Gemini"
   - "RULE-SET,openai,OpenAI"
