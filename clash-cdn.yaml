@@ -1,4 +1,4 @@
-# update: 2025-07-21 22:08:00
+# update: 2025-07-21 22:17:09
 
 ### 全局配置
 profile:
@@ -254,6 +254,8 @@ proxy-groups:
     filter: (?i)(?=.*\bTK\b|tiktok|抖音国际版|跨境电商)
     name: 手动选择|TT
     type: select
+    proxies:
+      - TIKTOK-US
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
