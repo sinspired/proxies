@@ -1,4 +1,4 @@
-# update: 2025-07-21 22:19:40
+# update: 2025-07-21 22:44:58
 
 ### 全局配置
 profile:
@@ -223,6 +223,8 @@ proxy-groups:
       - US AUTO
       - AI
       - TikTok
+      - Youtube
+      - Gemini
       - 手动选择
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/TikTok.png
     include-all: false
