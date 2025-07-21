@@ -1,4 +1,4 @@
-# update: 2025-07-22 01:32:04
+# update: 2025-07-22 01:45:38
 
 ### 全局配置
 profile:
@@ -208,14 +208,14 @@ rule-providers:
     type: http
   cloudflare:
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.yaml
-    path: ./ruleset/cloudflare.list
+    path: ./ruleset/cloudflare.yaml
     behavior: domain
     interval: 86400
     format: yaml
     type: http
   cloudflareCN:
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare-cn.yaml
-    path: ./ruleset/cloudflare.list
+    path: ./ruleset/cloudflare-cn.yaml
     behavior: domain
     interval: 86400
     format: yaml
