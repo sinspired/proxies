@@ -1,4 +1,4 @@
-# update: 2025-07-24 03:06:46
+# update: 2025-07-24 15:15:03
 
 ### 全局配置
 profile:
@@ -257,6 +257,7 @@ proxy-groups:
       - TIKTOK-JP
       - TIKTOK-KR 
       - TIKTOK-SG
+      - TIKTOK-GB
       - TIKTOK-TW
       - 手动选择|TT
       # - TIKTOK-CA 
@@ -273,7 +274,7 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?=.*\bTK\b|tiktok|TK-|抖音国际版|跨境电商)(?=.*\b(?:[0-9]|[1-4][0-9]|5[0-5])%).*
+    filter: (?i)^(?=.*(?:T(?:K|T)|抖音国际版|跨境电商))(?=.*\b(?:[0-5]?\d|5[0-5])%).*$
     name: 手动选择|TT
     type: select
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
@@ -364,7 +365,7 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?=.*\bTK-US\b|TK_US|TikTok-US)(?=.*\b(?:[0-9]|[1-4][0-9]|5[0-5])%).*
+    filter: (?i)^(?=.*T(?:K[_-])US)(?=.*\b(?:[0-5]?\d|5[0-5])%).*$
     name: TIKTOK-US
     type: url-test
     interval: 300
@@ -372,7 +373,7 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?=.*\bTK-JP\b|TK_JP|TikTok-JP)(?=.*\b(?:[0-9]|[1-4][0-9]|5[0-5])%).*
+    filter: (?i)^(?=.*T(?:K[_-])JP)(?=.*\b(?:[0-5]?\d|5[0-5])%).*$
     name: TIKTOK-JP
     type: url-test
     interval: 300
@@ -380,7 +381,7 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?=.*\bTK-VN\b|TK_VN|TikTok-VN)(?=.*\b(?:[0-9]|[1-4][0-9]|5[0-5])%).*
+    filter: (?i)^(?=.*T(?:K[_-])VN)(?=.*\b(?:[0-5]?\d|5[0-5])%).*$
     name: TIKTOK-VN
     type: url-test
     interval: 300
@@ -388,7 +389,7 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?=.*\bTK-KR\b|TK_KR|TikTok-KR)(?=.*\b(?:[0-9]|[1-4][0-9]|5[0-5])%).*
+    filter: (?i)^(?=.*T(?:K[_-])KR)(?=.*\b(?:[0-5]?\d|5[0-5])%).*$
     name: TIKTOK-KR
     type: url-test
     interval: 300
@@ -396,15 +397,23 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?=.*\bTK-SG\b|TK_SG|TikTok-SG)
-    name: TIKTOK-SG(?=.*\b(?:[0-9]|[1-4][0-9]|5[0-5])%).*
+    filter: (?i)^(?=.*T(?:K[_-])SG)(?=.*\b(?:[0-5]?\d|5[0-5])%).*$
+    name: TIKTOK-SG
     type: url-test
     interval: 300
     tolerance: 50
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?=.*\bTK-TW\b|TK_TW|TikTok-TW)(?=.*\b(?:[0-9]|[1-4][0-9]|5[0-5])%).*
+    filter: (?i)^(?=.*T(?:K[_-])GB)(?=.*\b(?:[0-5]?\d|5[0-5])%).*$
+    name: TIKTOK-GB
+    type: url-test
+    interval: 300
+    tolerance: 50
+  - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
+    include-all: true
+    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)^(?=.*T(?:K[_-])TW)(?=.*\b(?:[0-5]?\d|5[0-5])%).*$
     name: TIKTOK-TW
     type: url-test
     interval: 300
