@@ -1,4 +1,4 @@
-# update: 2025-10-23 03:48:32
+# update: 2025-10-23 04:46:59
 
 ### 全局配置
 profile:
@@ -32,14 +32,14 @@ dns:
     - any:53
     - tcp://any:53
   nameserver:
-    - "https://dns.alidns.com/dns-query" 
+    - "https://dns.alidns.com/dns-query"
     - "quic://223.6.6.6"
   proxy-server-nameserver:
     - "https://dns.alidns.com/dns-query"
     - "114.114.114.114"
   fallback:
     - "8.8.8.8"
-    - "4.2.2.2" 
+    - "4.2.2.2"
 
 rule-providers:
   private:
@@ -190,6 +190,13 @@ rule-providers:
     interval: 86400
     format: yaml
     type: http
+  twitter:
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Twitter/Twitter.yaml
+    path: ./ruleset/twitter.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
   steam:
     url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Steam/Steam.yaml
     path: ./ruleset/steam.yaml
@@ -260,12 +267,12 @@ proxy-groups:
       - TIKTOK-VN
       - TIKTOK-US
       - TIKTOK-JP
-      - TIKTOK-KR 
+      - TIKTOK-KR
       - TIKTOK-SG
       - TIKTOK-GB
       - TIKTOK-TW
       - 手动选择|TT
-      # - TIKTOK-CA 
+      # - TIKTOK-CA
       # - TIKTOK-DE
       # - TIKTOK-NL
       # - TIKTOK-RU
@@ -308,7 +315,22 @@ proxy-groups:
       - OpenAI
       - Gemini
       - Youtube
+      - PROXY
       - AUTO
+  - icon: https://cdn.jsdelivr.net/gh/sinspired/proxies@main/ico/AI.png
+    name: Twitter
+    type: select
+    proxies:
+      - OpenAI
+      - Gemini
+      - Youtube
+      - PROXY
+      - AUTO
+      - HK AUTO
+      - JP AUTO
+      - US AUTO
+      - TW AUTO
+      - SG AUTO
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/Bing.png
     name: Bing
     type: select
@@ -340,7 +362,7 @@ proxy-groups:
       - AUTO
       - PROXY
 
-# 关键词筛选
+  # 关键词筛选
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/OpenAI.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -366,7 +388,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
 
-# TikTok地区筛选
+  # TikTok地区筛选
   - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -424,7 +446,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
 
-# 地区筛选
+  # 地区筛选
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/HK.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -492,6 +514,7 @@ rules:
   - "RULE-SET,copilot,AI"
   - "RULE-SET,cloudflare-cn,DIRECT"
   - "RULE-SET,cloudflare,OpenAI"
+  - "RULE-SET,twitter,Twitter"
   - "RULE-SET,steam,PROXY"
   - "RULE-SET,spotify,Spotify"
   - "RULE-SET,OneDrive,PROXY"
