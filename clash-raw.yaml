@@ -5,11 +5,15 @@ profile:
   store-selected: true
   store-fake-ip: true
 
+# 控制面板
+external-controller: 127.0.0.1:9090
+external-ui: ui
+external-ui-url: "https://git.40609891.xyz/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
+
 dns:
   enable: true
   listen: "0.0.0.0:1053"
   ipv6: true
-  prefer-h3: true
   use-hosts: true
   use-system-hosts: true
   respect-rules: false
@@ -23,6 +27,7 @@ dns:
     - "*.test"
     - "*.invalid"
     - "*.example"
+  prefer-h3: true
   dns-hijack:
     - any:53
     - tcp://any:53
@@ -34,7 +39,7 @@ dns:
     - "114.114.114.114"
   fallback:
     - "8.8.8.8"
-    - "114.114.114.114" 
+    - "4.2.2.2" 
 
 rule-providers:
   private:

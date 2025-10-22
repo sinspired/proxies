@@ -1,0 +1,36 @@
+hosts:
+  dns.alidns.com: [223.5.5.5, 223.6.6.6, 2400:3200::1, 2400:3200:baba::1]
+  doh.pub: [1.12.12.12, 1.12.12.21, 120.53.53.53]
+  dns.google: [8.8.8.8, 8.8.4.4, 2001:4860:4860::8888, 2001:4860:4860::8844]
+  dns11.quad9.net: [9.9.9.11, 149.112.112.11, 2620:fe::11, 2620:fe::fe:11]
+  miwifi.com: [192.168.31.1, 127.0.0.1]
+  services.googleapis.cn: [services.googleapis.com]
+
+dns:
+  enable: true
+  ipv6: true
+  listen: 0.0.0.0:53
+  fake-ip-range: 28.0.0.1/8
+  enhanced-mode: fake-ip
+  fake-ip-filter: ["rule-set:fakeip-filter,trackerslist,private,cn"]
+  respect-rules: true
+  nameserver:
+    ## 推荐将 `ecs` 设置为当前网络所属运营商在当地省会城市的 IP 段
+    - "https://dns.google/dns-query#ecs=211.137.64.0/20"
+    - "https://dns11.quad9.net/dns-query#ecs=211.137.64.0/20"
+    - https://doh.pub/dns-query#ecs=183.192.0.0/10
+  proxy-server-nameserver:
+    - quic://dns.alidns.com:853
+    - https://doh.pub/dns-query
+  direct-nameserver:
+    - quic://dns.alidns.com:853
+    - https://doh.pub/dns-query
+
+rule-providers:
+  cn:
+    type: http
+    behavior: domain
+    format: mrs
+    path: ./rules/cn.mrs
+    url: "https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/cn.mrs"
+    interval: 86400

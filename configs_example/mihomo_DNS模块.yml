@@ -1,0 +1,613 @@
+# DNS模块
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: false
+  prefer-h3: false # 是否开启 DoH 支持 HTTP/3，将并发尝试
+  respect-rules: true
+  # 模式切换 redir-host / fake-ip
+  enhanced-mode: fake-ip
+  fake-ip-range: 28.0.0.1/8
+  # 模式切换 whitelist/blacklist
+  # 黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 Fake-IP
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - "rule-set:fakeip_filter_domain,game_cn_domain,bank_cn_domain,wechat_domain,ai_cn_domain,NetEaseMusic_domain,fcm_domain,alibaba_domain,fcm_domain,media_cn_domain,xiaomi_domain,steam_cn_domain,pt_cn_domain,public-tracker_domain,115_domain,aliyun_domain,direct_domain,apple_cn_domain,apple_firmware_domain,iptv_domain,private_domain,cn_domain"
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  proxy-server-nameserver:
+    - quic://dns.alidns.com/dns-query
+    - https://sm2.doh.pub/dns-query
+  nameserver:
+    - quic://dns.alidns.com/dns-query
+    - https://sm2.doh.pub/dns-query
+
+# 锚点区
+Proxy_first:
+  &Proxy_first {
+    type: select,
+    proxies:
+      [
+        节点选择,
+        香港节点,
+        新加坡节点,
+        日本节点,
+        台湾节点,
+        美国节点,
+        欧洲节点,
+        全部节点,
+        自建/家宽节点,
+        全球直连,
+      ],
+  }
+
+Direct_first:
+  &Direct_first {
+    type: select,
+    proxies:
+      [
+        全球直连,
+        节点选择,
+        香港节点,
+        新加坡节点,
+        日本节点,
+        台湾节点,
+        美国节点,
+        欧洲节点,
+        全部节点,
+        自建/家宽节点,
+      ],
+  }
+
+Include_all:
+  &Include_all {
+    type: select,
+    proxies:
+      [
+        节点选择,
+        香港节点,
+        新加坡节点,
+        日本节点,
+        台湾节点,
+        美国节点,
+        欧洲节点,
+        全部节点,
+        自建/家宽节点,
+        全球直连,
+      ],
+    include-all: true,
+    exclude-filter: "(?i)(🟢 直连)",
+  }
+
+# 策略组
+proxy-groups:
+  - {
+      name: 节点选择,
+      type: select,
+      proxies:
+        [
+          香港节点,
+          新加坡节点,
+          日本节点,
+          台湾节点,
+          美国节点,
+          欧洲节点,
+          全部节点,
+          自建/家宽节点,
+          故障转移,
+        ],
+      icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/KittyLink.png",
+    }
+  - {
+      name: 香港节点,
+      type: select,
+      proxies: [香港自动, 香港均衡],
+      include-all: true,
+      filter: "(?i)(港|hk|hongkong|Hong Kong)",
+      icon: "https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Country/HK02.png",
+    }
+  - {
+      name: 台湾节点,
+      type: select,
+      proxies: [台湾自动, 台湾均衡],
+      include-all: true,
+      filter: "(?i)(台|🇹🇼|TW|Taiwan)",
+      icon: "https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Country/TW.png",
+    }
+  - {
+      name: 新加坡节点,
+      type: select,
+      proxies: [新加坡自动, 新加坡均衡],
+      include-all: true,
+      filter: "(?i)(新|🇸🇬|SG|singapore)",
+      icon: "https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Country/SG.png",
+    }
+  - {
+      name: 日本节点,
+      type: select,
+      proxies: [日本自动, 日本均衡],
+      include-all: true,
+      filter: "(?i)(日本|🇯🇵|JP|Japan)",
+      icon: "https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Country/JP.png",
+    }
+  - {
+      name: 美国节点,
+      type: select,
+      proxies: [美国自动, 美国均衡],
+      include-all: true,
+      filter: "(?i)(美|🇺🇲|US|America|United States)",
+      exclude-filter: "(?i)(Australia|Russia)",
+      icon: "https://raw.githubusercontent.com/erdongchanyo/icon/main/Policy-Country/US.png",
+    }
+  - {
+      name: 欧洲节点,
+      type: select,
+      include-all: true,
+      filter: "(?i)(🇦🇱|🇦🇩|🇦🇹|🇧🇾|🇧🇪|🇧🇦|🇧🇬|🇭🇷|🇨🇾|🇨🇿|🇩🇰|🇪🇪|🇫🇮|🇫🇷|🇩🇪|🇬🇷|🇭🇺|🇮🇸|🇮🇪|🇮🇹|🇽🇰|🇱🇻|🇱🇮|🇱🇹|🇱🇺|🇲🇹|🇲🇩|🇲🇨|🇲🇪|🇳🇱|🇲🇰|🇳🇴|🇵🇱|🇵🇹|🇷🇴|🇷🇺|🇸🇲|🇷🇸|🇸🇰|🇸🇮|🇪🇸|🇸🇪|🇨🇭|🇹🇷|🇺🇦|🇬🇧|🇻🇦)",
+      icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/European.png",
+    }
+
+  - {
+      name: 香港自动,
+      type: url-test,
+      include-all: true,
+      tolerance: 20,
+      interval: 300,
+      hidden: true,
+      filter: "(?i)(香港|hk|hongkong|Hong Kong)",
+      exclude-filter: "(?i)(The_HK_automation|wcloud|0倍|0\\.1倍|0\\.01倍|0\\.3X|0\\.2x|0\\.5x|3X|2x|1\\.5x|traffic|plus)",
+      icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png",
+    }
+  - {
+      name: 台湾自动,
+      type: url-test,
+      include-all: true,
+      tolerance: 20,
+      interval: 300,
+      hidden: true,
+      filter: "(?i)(台|🇹🇼|TW|Taiwan)",
+      exclude-filter: "(?i)(The_TW_automation|wcloud|0倍|0\\.1倍|0\\.01倍|0\\.3X|0\\.2x|0\\.5x|3X|2x|1\\.5x|traffic|plus)",
+      icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Taiwan.png",
+    }
+  - {
+      name: 新加坡自动,
+      type: url-test,
+      include-all: true,
+      tolerance: 20,
+      interval: 300,
+      hidden: true,
+      filter: "(?i)(新|🇸🇬|SG|Singapore)",
+      exclude-filter: "(?i)(The_SG_automation|wcloud|0倍|0\\.1倍|0\\.01倍|0\\.3X|0\\.2x|0\\.5x|3X|2x|1\\.5x|traffic|plus)",
+      icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png",
+    }
+  - {
+      name: 日本自动,
+      type: url-test,
+      include-all: true,
+      tolerance: 20,
+      interval: 300,
+      hidden: true,
+      filter: "(?i)(日本|🇯🇵|JP|Japan)",
+      exclude-filter: "(?i)(The_JP_automation|wcloud|0倍|0\\.1倍|0\\.01倍|0\\.3X|0\\.2x|0\\.5x|3X|2x|1\\.5x|traffic|plus)",
+      icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png",
+    }
+  - {
+      name: 美国自动,
+      type: url-test,
+      include-all: true,
+      tolerance: 20,
+      interval: 300,
+      hidden: true,
+      filter: "(?i)(美|🇺🇲|US|America|united States)",
+      exclude-filter: "(?i)(The_US_automation|wcloud|0倍|0\\.1倍|0\\.01倍|0\\.3X|0\\.2x|0\\.5x|3X|2x|1\\.5x|russia|austria|plus|traffic|Australia|rus|aus)",
+      icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png",
+    }
+  - {
+      name: 香港均衡,
+      type: load-balance,
+      include-all: true,
+      strategy: consistent-hashing,
+      hidden: true,
+      filter: "(?i)(香港|hk|hongkong|Hong Kong)",
+      exclude-filter: "(?i)(The_HK_balance|wcloud|0倍|0\\.1倍|0\\.01倍|0\\.3X|0\\.2x|0\\.5x|3X|2x|1\\.5x|traffic|plus)",
+      icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/load-balance.png",
+    }
+  - {
+      name: 新加坡均衡,
+      type: load-balance,
+      include-all: true,
+      strategy: consistent-hashing,
+      hidden: true,
+      filter: "(?i)(新|🇸🇬|SG|Singapore)",
+      exclude-filter: "(?i)(The_SG_balance|wcloud|0倍|0\\.1倍|0\\.01倍|0\\.3X|0\\.2x|0\\.5x|3X|2x|1\\.5x|traffic|plus)",
+      icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/load-balance.png",
+    }
+  - {
+      name: 日本均衡,
+      type: load-balance,
+      include-all: true,
+      strategy: consistent-hashing,
+      hidden: true,
+      filter: "(?i)(日本|🇯🇵|JP|Japan)",
+      exclude-filter: "(?i)(The_JP_balance|wcloud|0倍|0\\.1倍|0\\.01倍|0\\.3X|0\\.2x|0\\.5x|3X|2x|1\\.5x|traffic|plus)",
+      icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/load-balance.png",
+    }
+  - {
+      name: 台湾均衡,
+      type: load-balance,
+      include-all: true,
+      strategy: consistent-hashing,
+      hidden: true,
+      filter: "(?i)(台|🇹🇼|TW|Taiwan)",
+      exclude-filter: "(?i)(The_TW_balance|wcloud|0倍|0\\.1倍|0\\.01倍|0\\.3X|0\\.2x|0\\.5x|3X|2x|1\\.5x|traffic|plus)",
+      icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/load-balance.png",
+    }
+  - {
+      name: 美国均衡,
+      type: load-balance,
+      include-all: true,
+      strategy: consistent-hashing,
+      hidden: true,
+      filter: "(?i)(美|🇺🇲|US|America|united States)",
+      exclude-filter: "(?i)(The_US_balance|wcloud|0倍|0\\.1倍|0\\.01倍|0\\.3X|0\\.2x|0\\.5x|3X|2x|1\\.5x|russia|austria|plus|traffic|Australia|rus|aus)",
+      icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/load-balance.png",
+    }
+  # 功能型代理组默认隐藏 start
+  - { name: 🟢 直连, type: select, hidden: true, proxies: [DIRECT] }
+  - { name: 🔗 代理, type: select, hidden: true, proxies: [节点选择] }
+  - { name: 🚫 拒绝, type: select, hidden: true, proxies: [REJECT] }
+  - { name: ⚪ 丢弃, type: select, hidden: true, proxies: [REJECT-DROP] }
+  # over
+  - {
+      name: Telegram,
+      <<: *Proxy_first,
+      icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/Telegram.png",
+    }
+  - {
+      name: TikTok,
+      <<: *Proxy_first,
+      icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/TikTok.png",
+    }
+  - {
+      name: YouTube,
+      <<: *Proxy_first,
+      icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/YouTube.png",
+    }
+  - {
+      name: Google,
+      <<: *Proxy_first,
+      icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Google_Suite/Google.png",
+    }
+  - {
+      name: Meta,
+      <<: *Proxy_first,
+      icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Google_Suite/Google_Plus.png",
+    }
+  - {
+      name: AI,
+      <<: *Include_all,
+      icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/Reddit.png",
+    }
+
+  - {
+      name: 全球直连,
+      type: select,
+      proxies: [🟢 直连, 🔗 代理],
+      icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Streaming.png",
+    }
+  - {
+      name: 隐私拦截,
+      type: select,
+      proxies: [🚫 拒绝, ⚪ 丢弃, 🟢 直连, 🔗 代理],
+      icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Reject.orig.png",
+    }
+  - {
+      name: 故障转移,
+      type: fallback,
+      include-all: true,
+      proxies:
+        [
+          香港节点,
+          新加坡节点,
+          日本节点,
+          台湾节点,
+          美国节点,
+          欧洲节点,
+          自建/家宽节点,
+        ],
+      interval: 300,
+      exclude-filter: "(?i)(🟢 直连)",
+      icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/fallback.png",
+    }
+  - {
+      name: Final,
+      type: select,
+      <<: *Include_all,
+      icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Final.png",
+    }
+  - {
+      name: 全部节点,
+      type: select,
+      include-all: true,
+      tolerance: 20,
+      interval: 300,
+      exclude-filter: "(?i)(🟢 直连)",
+      icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/all.png",
+    }
+  - {
+      name: 自建/家宽节点,
+      type: select,
+      include-all: true,
+      filter: "(?i)(自建|CF|The_house|private)",
+      icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/SSID.png",
+    }
+  - {
+      name: GLOBAL,
+      type: select,
+      include-all: true,
+      proxies:
+        [
+          节点选择,
+          香港节点,
+          台湾节点,
+          新加坡节点,
+          日本节点,
+          美国节点,
+          欧洲节点,
+          TikTok,
+          Telegram,
+          YouTube,
+          AI,
+          Google,
+          Meta,
+          全球直连,
+          隐私拦截,
+          故障转移,
+          Final,
+          全部节点,
+          自建/家宽节点,
+          香港自动,
+          新加坡自动,
+          日本自动,
+          台湾自动,
+          美国自动,
+          香港均衡,
+          新加坡均衡,
+          日本均衡,
+          台湾均衡,
+          美国均衡,
+        ],
+      exclude-filter: "(?i)(🟢 直连)",
+      icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/global.png",
+    }
+rules:
+  - RULE-SET,embylist_domain,全球直连
+  - RULE-SET,banAd_domain,隐私拦截
+  - RULE-SET,proxy_domain,节点选择
+  - RULE-SET,ai!cn_domain,AI
+  - RULE-SET,ai_domain,AI
+  - RULE-SET,openai_domain,AI
+  - RULE-SET,bank_cn_domain,全球直连
+  - RULE-SET,ai_cn_domain,全球直连
+  - RULE-SET,direct_domain,全球直连
+  - RULE-SET,115_domain,全球直连
+  - RULE-SET,aliyun_domain,全球直连
+  - RULE-SET,youtube_domain,YouTube
+  - RULE-SET,google_domain,Google
+  - RULE-SET,google_asn_cn,Google,no-resolve
+  - RULE-SET,google_ip,Google,no-resolve
+  - RULE-SET,telegram_domain,Telegram
+  - RULE-SET,telegram_ip,Telegram,no-resolve
+  - RULE-SET,iptv_domain,全球直连
+  - RULE-SET,private_domain,全球直连
+  - RULE-SET,xiaomi_domain,全球直连
+  - RULE-SET,pt_cn_domain,全球直连
+  - RULE-SET,public-tracker_domain,全球直连
+  - RULE-SET,tiktok_domain,TikTok
+  - RULE-SET,facebook_domain,Meta
+  - RULE-SET,whatsapp_domain,Meta
+  - RULE-SET,instagram_domain,Meta
+  - RULE-SET,threads_domain,Meta
+  - RULE-SET,meta_domain,Meta
+  - RULE-SET,facebook_ip,Meta,no-resolve
+  - RULE-SET,twitter_ip,节点选择,no-resolve
+  - RULE-SET,geolocation-!cn,节点选择
+  - RULE-SET,cn_domain,全球直连
+  - RULE-SET,private_ip,全球直连,no-resolve
+  - RULE-SET,cn_ip,全球直连,no-resolve
+  - MATCH,Final
+
+rule-anchor:
+  ip: &ip { type: http, interval: 86400, behavior: ipcidr, format: mrs }
+  ip_text:
+    &ip_text { type: http, interval: 86400, behavior: ipcidr, format: text }
+  ip_yaml:
+    &ip_yaml { type: http, interval: 86400, behavior: ipcidr, format: yaml }
+  domain: &domain { type: http, interval: 86400, behavior: domain, format: mrs }
+  domain_text:
+    &domain_text { type: http, interval: 86400, behavior: domain, format: text }
+  domain_yaml:
+    &domain_yaml { type: http, interval: 86400, behavior: domain, format: yaml }
+  class:
+    &class { type: http, interval: 86400, behavior: classical, format: text }
+  class_yaml:
+    &class_yaml {
+      type: http,
+      interval: 86400,
+      behavior: classical,
+      format: yaml,
+    }
+
+rule-providers:
+  embylist_domain:
+    {
+      <<: *class,
+      url: "https://raw.githubusercontent.com/wushijujibu/Rules/refs/heads/main/emby_loon.list",
+    }
+  banAd_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/banAd.mrs",
+    }
+  private_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs",
+    }
+  bank_cn_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-bank-cn.mrs",
+    }
+  xiaomi_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/xiaomi.mrs",
+    }
+  ai!cn_domain:
+    {
+      <<: *domain,
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn.mrs",
+    }
+  openai_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/openai.mrs",
+    }
+  youtube_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs",
+    }
+  google_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/google.mrs",
+    }
+  telegram_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs",
+    }
+  tiktok_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs",
+    }
+  geolocation-!cn:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs",
+    }
+  cn_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs",
+    }
+  facebook_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/facebook.mrs",
+    }
+  whatsapp_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/whatsapp.mrs",
+    }
+  instagram_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/instagram.mrs",
+    }
+  threads_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/threads.mrs",
+    }
+  meta_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/meta.mrs",
+    }
+  proxy_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/proxy.mrs",
+    }
+  direct_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/direct.mrs",
+    }
+  ai_cn_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-cn.mrs",
+    }
+  pt_cn_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-pt.mrs",
+    }
+  public-tracker_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-public-tracker.mrs",
+    }
+  115_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/115.mrs",
+    }
+  aliyun_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/aliyun.mrs",
+    }
+  iptv_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/iptv.mrs",
+    }
+  ai_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/ai.mrs",
+    }
+
+  cn_ip:
+    {
+      <<: *ip,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs",
+    }
+  google_ip:
+    {
+      <<: *ip,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs",
+    }
+  telegram_ip:
+    {
+      <<: *ip,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs",
+    }
+  facebook_ip:
+    {
+      <<: *ip,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/facebook.mrs",
+    }
+  twitter_ip:
+    {
+      <<: *ip,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/twitter.mrs",
+    }
+  private_ip:
+    {
+      <<: *ip,
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/private.mrs",
+    }
+  google_asn_cn:
+    {
+      <<: *ip,
+      url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/IP/AS24424.mrs",
+    }

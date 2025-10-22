@@ -1,0 +1,333 @@
+# 机场订阅，名称不能重复
+proxy-providers:
+  渔云机场:
+    url: "订阅地址1"
+    type: http
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+    proxy: 🟢 全球直连
+    override:
+      skip-cert-verify: true
+
+#  顶级机场:
+#    url: "订阅地址2"
+#    type: http
+#    interval: 1800
+#    health-check:
+#      enable: true
+#      url: https://www.gstatic.com/generate_204
+#      interval: 300
+#    proxy: 🟢 全球直连
+#    override:
+#      skip-cert-verify: true
+
+proxies:
+  - name: 🟢 全球直连
+    type: direct
+    udp: true
+    
+# 全局配置
+
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7894
+allow-lan: true
+bind-address: "*"
+ipv6: false
+unified-delay: true
+tcp-concurrent: true
+log-level: warning
+global-ua: clash.meta                # 用于下载订阅时指定UA, 优先级低于proxy-providers.机场.header.User-Agent
+mode: rule                           # 代理模式, 默认rule
+find-process-mode: 'off'             # 进程匹配: always/strict
+global-client-fingerprint: chrome    # 客户端指纹
+keep-alive-idle: 600
+keep-alive-interval: 30
+disable-keep-alive: false            # 关闭上面两项, 用于移动设备省电
+profile:                             # 策略组选择和fakeip缓存
+  store-selected: true
+  store-fake-ip: true
+
+# TUN配置
+tun:
+  enable: true
+  stack: mixed                       # system/gvisor/mixed
+  mtu: 9000
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  route-exclude-address-set:
+    - "rule-set:cn_ip"
+
+# GEO数据库配置
+geodata-mode: false                  # true/false
+geodata-loader: standard             # memconservative小内存/standard标准内存
+geo-auto-update: true                # true GEOIP Dat/fasle MMDB
+geo-update-interval: 24
+geox-url:
+  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
+  asn: "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
+  
+# 控制面板
+external-controller: 0.0.0.0:9090
+secret: ""
+#external-ui: ui
+external-ui-name: zashboard
+external-ui-url: "https://ghproxy.wangshui898.top/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
+  
+# 流量嗅探
+sniffer:
+  enable: false
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  force-domain:
+    - +.v2ex.com
+  skip-domain:
+    - "rule-set:private_domain,cn_domain"
+    
+# DNS模块
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: false
+  respect-rules: true
+  enhanced-mode: fake-ip                   # 模式切换 redir-host / fake-ip
+  fake-ip-range: 28.0.0.1/8
+  fake-ip-filter-mode: blacklist           # 模式切换 whitelist/blacklist, 黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 Fake-IP
+  fake-ip-filter:                          # 黑名单模式: 即名单列表中配置匹配成功走redir-host模式
+    - "+.lan"
+    - "+.local"
+    - "+.services.googleapis.cn"
+    - "rule-set:private_domain,cn_domain"
+  default-nameserver:                            # 为下面域名形式的DNS服务器做解析
+    - 223.5.5.5
+    - 119.29.29.29
+  direct-nameserver:                             # 为配置直连规则的域名做解析, 前提direct-nameserver-follow-policy设置为false
+    - 223.5.5.5
+  direct-nameserver-follow-policy: false         # 设置为false, direct-nameserver配置优先; 设置为true, direct-nameserver配置不优先
+  proxy-server-nameserver:                       # proxies配置中负责代理域名服务的DNS解析
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver-policy:                             # 真正的代理DNS匹配规则
+    "rule-set:private_domain,cn_domain":
+      - 223.5.5.5
+      - 119.29.29.29
+    "rule-set:geolocation-!cn":
+      - "tls://8.8.4.4"#🔰 节点选择
+      - "tls://1.1.1.1"#🔰 节点选择&h3=true
+#      - "https://dns.cloudflare.com/dns-query"
+#      - "https://dns.google/dns-query"
+  nameserver:                                    # 主域名服务器, 访问国内必备
+    - 223.5.5.5
+    - 119.29.29.29
+
+# 策略组
+proxy-groups:
+  - name: 🔰 节点选择
+    type: select
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 高速节点
+      - 🪜 国外节点
+      - 🏡 原生家宽
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇰🇷 韩国节点
+      - 🇯🇵 日本节点
+      - 🇸🇬 新加坡节点
+      - 🇺🇲 美国节点
+      - 🇬🇧 英国节点
+      - 🔯 故障转移
+      - 🟢 全球直连
+        
+  - name: ♻️ 自动选择
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "^((?!(直连|拦截|流量|套餐|官网|超时|收藏)).)*$"
+
+  - name: 🚀 高速节点
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)x2|2倍|x3|3倍|x4|4倍|x5|5倍"
+
+  - name: 🪜 国外节点
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)韩国|日本|新加坡|马来|美国|英国"
+ 
+  - name: 🏡 原生家宽
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "家宽|家庭|原生"
+  
+  - name: 🔯 故障转移
+    type: fallback
+    include-all: true
+    
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - 🔰 节点选择
+      - 🔯 故障转移
+      - 🟢 全球直连 
+      
+  - name: 🇭🇰 香港节点
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)香港|hk|hongkong|hong kong"
+  - name: 🇹🇼 台湾节点
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)台|tw|taiwan"
+  - name: 🇰🇷 韩国节点
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)韩|kr|korea"
+  - name: 🇯🇵 日本节点
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)日|jp|japan"
+  - name: 🇸🇬 新加坡节点
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)新加坡|sg|singapore"
+  - name: 🇺🇲 美国节点
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)美国|us|unitedstates|united states"
+  - name: 🇬🇧 英国节点
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)英国|uk|united kingdom"
+  
+# 规则
+rules:
+#  - RULE-SET,MetaCubeX_AD,🛑 全球拦截
+#  - RULE-SET,ACL4SSR_BanAD,🛑 全球拦截
+#  - RULE-SET,ACL4SSR_BanProgramAD,🛑 全球拦截
+  - RULE-SET,direct_domain,🟢 全球直连
+  - RULE-SET,direct_ip,🟢 全球直连
+
+  - RULE-SET,proxy_!cn_domain,🪜 国外节点
+  - RULE-SET,category-ai-!cn,🪜 国外节点
+  - GEOSITE,openai,🪜 国外节点
+  - GEOSITE,pikpak,🪜 国外节点
+  - GEOSITE,category-porn,🪜 国外节点
+  - GEOSITE,javdb,🪜 国外节点
+  - GEOSITE,javbus,🪜 国外节点
+  - GEOSITE,gateio,🪜 国外节点
+  - GEOSITE,binance,🪜 国外节点
+  - GEOIP,telegram,🔰 节点选择
+  - GEOSITE,telegram,🔰 节点选择
+  - GEOSITE,github,🔰 节点选择
+  - GEOSITE,youtube,🔰 节点选择
+  - GEOSITE,twitter,🔰 节点选择
+  - GEOIP,google,🔰 节点选择
+  - GEOSITE,google,🔰 节点选择
+  - GEOIP,cloudflare,🔰 节点选择
+  - GEOSITE,cloudflare,🔰 节点选择
+  - RULE-SET,geolocation-!cn,🔰 节点选择
+  - RULE-SET,cn_domain,🟢 全球直连
+  - RULE-SET,cn_ip,🟢 全球直连
+  - MATCH,🐟 漏网之鱼
+
+# 规则集锚点
+rule-anchor:
+  ip_yaml: &ip_yaml
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: yaml
+  domain_yaml: &domain_yaml
+    type: http
+    interval: 86400
+    behavior: domain
+  ip_mrs: &ip_mrs
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+  domain_mrs: &domain_mrs
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+  class_text: &class_text
+    type: http
+    interval: 86400
+    behavior: classical
+    format: text
+
+# 规则集
+rule-providers:
+  cn_domain:
+    <<: *domain_yaml
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/cn.yaml"
+  cn_ip:
+    <<: *ip_yaml
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/cn.yaml"
+  private_domain:
+    <<: *domain_yaml
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/private.yaml"
+  geolocation-!cn:
+    <<: *domain_yaml
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/geolocation-!cn.yaml"
+  category-ai-!cn:
+    <<: *domain_yaml
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.yaml"
+  direct_ip:
+    <<: *ip_yaml
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/wangshui898/rule-templates/refs/heads/main/Clash.meta/direct_ip.yaml"
+  direct_domain:
+    <<: *domain_yaml
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/wangshui898/rule-templates/refs/heads/main/Clash.meta/direct_domain.yaml"
+  proxy_!cn_domain:
+    <<: *domain_yaml
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/wangshui898/rule-templates/refs/heads/main/Clash.meta/proxy_!cn_domain.yaml"
+#  MetaCubeX_AD:
+#    <<: *domain_yaml
+#    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ads-all.yaml"
+#  ACL4SSR_BanAD:
+#    <<: *class_text
+#    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list"
+#  ACL4SSR_BanProgramAD:
+#    <<: *class_text
+#    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list"

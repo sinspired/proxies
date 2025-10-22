@@ -1,0 +1,469 @@
+##############################################
+# 机场订阅
+PProviders:
+  &PProviders {
+    type: http,
+    interval: 86400,
+    health-check:
+      {
+        enable: true,
+        url: "https://www.apple.com/library/test/success.html",
+        interval: 300,
+      },
+    filter: "^(?!.*(拒绝|直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|traffic|Reset|Expire))",
+  }
+
+proxy-providers:
+  Sub Store:
+    <<: *PProviders
+    url: "http://127.0.0.1:8199/all.yaml"
+    override:
+      additional-prefix: "PC - "
+      skip-cert-verify: true
+      udp: true
+##############################################
+# 用于下载订阅时指定UA
+global-ua: clash.meta
+
+# 全局配置
+mixed-port: 7890
+ipv6: true
+allow-lan: true
+unified-delay: true
+tcp-concurrent: true
+log-level: info
+
+geodata-mode: false
+# GEO 文件加载模式（standard：标准加载器/memconservative：专为内存受限 (小内存) 设备优化的加载器 (默认值)）
+geodata-loader: standard
+geo-auto-update: true
+geo-update-interval: 48
+geox-url:
+  geoip: "https://git.40609891.xyz/https://raw.githubusercontent.com/Loyalsoldier/geoip/release/geoip.dat"
+  geosite: "https://git.40609891.xyz/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+  mmdb: "https://git.40609891.xyz/https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
+  asn: "https://git.40609891.xyz/https://raw.githubusercontent.com/Loyalsoldier/geoip/release/GeoLite2-ASN.mmdb"
+
+# 控制面板
+external-controller: 127.0.0.1:9090
+external-ui: ui
+external-ui-url: "https://git.40609891.xyz/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
+
+# 匹配进程 always/strict/off
+find-process-mode: strict
+global-client-fingerprint: chrome
+keep-alive-idle: 600
+keep-alive-interval: 30
+
+# 策略组选择和fakeip缓存
+profile:
+  store-selected: true
+  store-fake-ip: false
+
+# 流量嗅探
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  force-domain:
+    - "*.v2ex.com"
+  skip-domain:
+    - "dlg.io.mi.com"
+    - "*.wechat.com"
+    - "*.qpic.cn"
+    - "*.qq.com"
+    - "*.wechatapp.com"
+    - "*.vivox.com"
+    # 向日葵服务
+    - "*.oray.com"
+    - "*.sunlogin.net"
+
+# 代理模式
+tun:
+  enable: true
+  stack: mixed
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+
+# DNS模块
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: false
+  prefer-h3: true # 是否开启 DoH 支持 HTTP/3，将并发尝试
+  respect-rules: true
+  # 模式切换 redir-host / fake-ip
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  # 模式切换 whitelist/blacklist
+  # 黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 Fake-IP
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - "rule-set:fakeip_filter_domain,ChinaMax_Domain"
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - "+.google.com"
+      - "+.facebook.com"
+      - "+.youtube.com"
+      - "+.twitter.com"
+  default-nameserver:
+    - 223.5.5.5
+  proxy-server-nameserver:
+    - quic://dns.alidns.com/dns-query
+    - https://sm2.doh.pub/dns-query
+  direct-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  fallback:
+    - 8.8.8.8
+    - 208.67.222.222
+    - tls://8.8.4.4:853
+##############################################
+proxy-groups:
+  #分流分组
+  - {
+      name: 手动切换,
+      type: select,
+      include-all: true,
+      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png,
+    }
+  - {
+      name: 全球加速,
+      type: select,
+      proxies:
+        [
+          自动选择,
+          DIRECT,
+          手动切换,
+          香港节点,
+          日本节点,
+          台湾节点,
+          美国节点,
+          狮城节点,
+        ],
+      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png,
+    }
+  - {
+      name: OpenAi,
+      type: select,
+      proxies: [美国节点, 手动切换],
+      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png,
+    }
+  - {
+      name: 国际媒体,
+      type: select,
+      proxies:
+        [
+          自动选择,
+          DIRECT,
+          手动切换,
+          香港节点,
+          日本节点,
+          台湾节点,
+          美国节点,
+          狮城节点,
+        ],
+      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Streaming.png,
+    }
+  - {
+      name: 电报消息,
+      type: select,
+      proxies:
+        [
+          自动选择,
+          DIRECT,
+          手动切换,
+          香港节点,
+          日本节点,
+          台湾节点,
+          美国节点,
+          狮城节点,
+        ],
+      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png,
+    }
+  - {
+      name: 推特服务,
+      type: select,
+      proxies:
+        [
+          自动选择,
+          DIRECT,
+          手动切换,
+          香港节点,
+          日本节点,
+          台湾节点,
+          美国节点,
+          狮城节点,
+        ],
+      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Twitter.png,
+    }
+  - {
+      name: AdBlock,
+      type: select,
+      proxies: [REJECT, DIRECT],
+      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Adblock.png,
+    }
+  - {
+      name: 兜底分流,
+      type: fallback,
+      proxies:
+        [
+          自动选择,
+          DIRECT,
+          手动切换,
+          香港节点,
+          日本节点,
+          台湾节点,
+          美国节点,
+          狮城节点,
+        ],
+      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Final.png,
+    }
+
+  #节点分组
+  - {
+      name: 自动选择,
+      type: url-test,
+      include-all: true,
+      interval: 600,
+      tolerance: 50,
+      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png,
+    }
+  - {
+      name: 香港节点,
+      type: url-test,
+      include-all: true,
+      interval: 600,
+      tolerance: 50,
+      filter: "港|HK|(?i)Hong",
+      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png,
+    }
+  - {
+      name: 日本节点,
+      type: url-test,
+      include-all: true,
+      interval: 600,
+      tolerance: 50,
+      filter: "日|东京|JP|(?i)Japan",
+      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png,
+    }
+  - {
+      name: 台湾节点,
+      type: url-test,
+      include-all: true,
+      interval: 600,
+      tolerance: 50,
+      filter: "台|湾|TW|(?i)Taiwan",
+      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/TW.png,
+    }
+  - {
+      name: 美国节点,
+      type: url-test,
+      include-all: true,
+      interval: 600,
+      tolerance: 50,
+      filter: "美|US|(?i)States|American",
+      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png,
+    }
+  - {
+      name: 狮城节点,
+      type: url-test,
+      include-all: true,
+      interval: 600,
+      tolerance: 50,
+      filter: "新|坡|SG|(?i)Singapore",
+      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png,
+    }
+
+# 分流规则
+rule-providers:
+  AdRules:
+    {
+      behavior: domain,
+      interval: 86400,
+      format: text,
+      type: http,
+      url: https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_domainset.txt,
+      path: ./ruleset/AdRules.txt,
+    }
+  Reject:
+    {
+      behavior: domain,
+      interval: 86400,
+      format: text,
+      type: http,
+      url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt,
+      path: ./ruleset/reject.txt,
+    }
+  OpenAi:
+    {
+      behavior: classical,
+      interval: 86400,
+      format: yaml,
+      type: http,
+      url: https://gist.githubusercontent.com/ddgksf2013/cb4121e8b5c5d865cc949cb8120320c4/raw/Ai.yaml,
+      path: ./ruleset/OpenAi.yaml,
+    }
+  GlobalMedia:
+    {
+      behavior: classical,
+      interval: 86400,
+      format: yaml,
+      type: http,
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia_Classical.yaml,
+      path: ./ruleset/GlobalMedia_Classical.yaml,
+    }
+  Github:
+    {
+      behavior: classical,
+      interval: 86400,
+      format: yaml,
+      type: http,
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml,
+      path: ./ruleset/Github.yaml,
+    }
+  Telegram:
+    {
+      behavior: ipcidr,
+      interval: 86400,
+      format: yaml,
+      type: http,
+      url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt,
+      path: ./ruleset/Telegram.yaml,
+    }
+  Twitter:
+    {
+      behavior: classical,
+      interval: 86400,
+      format: yaml,
+      type: http,
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.yaml,
+      path: ./ruleset/Twitter.yaml,
+    }
+  ProxyLite:
+    {
+      behavior: domain,
+      interval: 86400,
+      format: text,
+      type: http,
+      url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt,
+      path: ./ruleset/proxy.yaml,
+    }
+  Direct:
+    {
+      behavior: domain,
+      interval: 86400,
+      format: text,
+      type: http,
+      url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt,
+      path: ./ruleset/Direct.yaml,
+    }
+  gfw:
+    {
+      behavior: domain,
+      interval: 86400,
+      format: text,
+      type: http,
+      url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt,
+      path: ./ruleset/gfw.yaml,
+    }
+  Lan:
+    {
+      behavior: ipcidr,
+      interval: 86400,
+      format: text,
+      type: http,
+      url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt,
+      path: ./ruleset/Lan.yaml,
+    }
+  Download:
+    {
+      behavior: classical,
+      interval: 86400,
+      format: yaml,
+      type: http,
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Download/Download.yaml,
+      path: ./ruleset/Download.yaml,
+    }
+  applications:
+    {
+      behavior: classical,
+      interval: 86400,
+      format: text,
+      type: http,
+      url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt,
+      path: ./ruleset/applications.yaml,
+    }
+  ChinaMax:
+    {
+      behavior: classical,
+      interval: 86400,
+      format: yaml,
+      type: http,
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax.yaml,
+      path: ./ruleset/ChinaMax.yaml,
+    }
+  ChinaMax_Domain:
+    {
+      behavior: domain,
+      interval: 86400,
+      format: yaml,
+      type: http,
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml,
+      path: ./ruleset/ChinaMax_Domain.yaml,
+    }
+  ChinaMax_IP:
+    {
+      behavior: ipcidr,
+      interval: 86400,
+      format: yaml,
+      type: http,
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax_IP.yaml,
+      path: ./ruleset/ChinaMax_IP.yaml,
+    }
+  fakeip_filter_domain:
+    {
+      behavior: domain,
+      interval: 86400,
+      format: yaml,
+      type: http,
+      url: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/fakeip-filter.yaml,
+      path: ./ruleset/fakeip_filter_domain.yaml,
+    }
+
+# 分流Policy
+rules:
+  - RULE-SET,AdRules,AdBlock
+  - RULE-SET,Reject,AdBlock
+  - RULE-SET,applications,DIRECT
+  - RULE-SET,Direct,DIRECT
+  - RULE-SET,Lan,DIRECT
+  - RULE-SET,Download,DIRECT
+  - RULE-SET,ChinaMax,DIRECT
+  - RULE-SET,ChinaMax_Domain,DIRECT
+  - RULE-SET,ChinaMax_IP,DIRECT
+  - RULE-SET,OpenAi,OpenAi
+  - RULE-SET,GlobalMedia,国际媒体
+  - RULE-SET,Github,全球加速
+  - RULE-SET,Telegram,电报消息
+  - RULE-SET,Twitter,全球加速
+  - RULE-SET,ProxyLite,全球加速
+  - GEOIP,CN,DIRECT
+  - MATCH,兜底分流
