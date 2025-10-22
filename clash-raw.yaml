@@ -315,7 +315,6 @@ proxy-groups:
       - OpenAI
       - Gemini
       - Youtube
-      - PROXY
       - AUTO
   - icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Twitter.png
     name: Twitter
@@ -392,7 +391,7 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?=.*TK)(?=.*(?<!-)US)
+    filter: (?i)^(?=.*TK|tiktok)(?=.*(?:(?:^|[^-])US|TK-US))
     name: TIKTOK-US
     type: url-test
     interval: 300
@@ -400,7 +399,7 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?=.*TK)(?=.*(?<!-)JP)
+    filter: (?i)^(?=.*TK|tiktok)(?=.*(?:(?:^|[^-])JP|TK-JP))
     name: TIKTOK-JP
     type: url-test
     interval: 300
@@ -408,7 +407,7 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?=.*TK)(?=.*(?<!-)VN)
+    filter: (?i)^(?=.*TK|tiktok)(?=.*(?:(?:^|[^-])VN|TK-VN))
     name: TIKTOK-VN
     type: url-test
     interval: 300
@@ -416,7 +415,7 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?=.*TK)(?=.*(?<!-)KR)
+    filter: (?i)^(?=.*TK|tiktok)(?=.*(?:(?:^|[^-])KR|TK-KR))
     name: TIKTOK-KR
     type: url-test
     interval: 300
@@ -424,7 +423,7 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?=.*TK)(?=.*(?<!-)SG)
+    filter: (?i)^(?=.*TK|tiktok)(?=.*(?:(?:^|[^-])SG|TK-SG))
     name: TIKTOK-SG
     type: url-test
     interval: 300
@@ -432,7 +431,7 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?=.*TK)(?=.*(?<!-)GB)
+    filter: (?i)^(?=.*TK|tiktok)(?=.*(?:(?:^|[^-])GB|TK-GB))
     name: TIKTOK-GB
     type: url-test
     interval: 300
@@ -440,7 +439,7 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?=.*TK)(?=.*(?<!-)TW)
+    filter: (?i)^(?=.*TK|tiktok)(?=.*(?:(?:^|[^-])TW|TK-TW))
     name: TIKTOK-TW
     type: url-test
     interval: 300
