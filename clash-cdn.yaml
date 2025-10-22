@@ -1,15 +1,19 @@
-# update: 2025-07-24 15:15:03
+# update: 2025-10-23 03:48:32
 
 ### 全局配置
 profile:
   store-selected: true
   store-fake-ip: true
 
+# 控制面板
+external-controller: 127.0.0.1:9090
+external-ui: ui
+external-ui-url: "https://git.40609891.xyz/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
+
 dns:
   enable: true
   listen: "0.0.0.0:1053"
   ipv6: true
-  prefer-h3: true
   use-hosts: true
   use-system-hosts: true
   respect-rules: false
@@ -23,6 +27,7 @@ dns:
     - "*.test"
     - "*.invalid"
     - "*.example"
+  prefer-h3: true
   dns-hijack:
     - any:53
     - tcp://any:53
@@ -34,7 +39,7 @@ dns:
     - "114.114.114.114"
   fallback:
     - "8.8.8.8"
-    - "114.114.114.114" 
+    - "4.2.2.2" 
 
 rule-providers:
   private:
@@ -274,7 +279,7 @@ proxy-groups:
   - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?=.*(?:T(?:K|T)|抖音国际版|跨境电商))(?=.*\b(?:[0-5]?\d|5[0-5])%).*$
+    filter: (?i)^(?=.*T(?:K))
     name: 手动选择|TT
     type: select
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png
@@ -365,7 +370,7 @@ proxy-groups:
   - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?=.*T(?:K[_-])US)(?=.*\b(?:[0-5]?\d|5[0-5])%).*$
+    filter: (?i)^(?=.*TK)(?=.*(?<!-)US)
     name: TIKTOK-US
     type: url-test
     interval: 300
@@ -373,7 +378,7 @@ proxy-groups:
   - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?=.*T(?:K[_-])JP)(?=.*\b(?:[0-5]?\d|5[0-5])%).*$
+    filter: (?i)^(?=.*TK)(?=.*(?<!-)JP)
     name: TIKTOK-JP
     type: url-test
     interval: 300
@@ -381,7 +386,7 @@ proxy-groups:
   - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?=.*T(?:K[_-])VN)(?=.*\b(?:[0-5]?\d|5[0-5])%).*$
+    filter: (?i)^(?=.*TK)(?=.*(?<!-)VN)
     name: TIKTOK-VN
     type: url-test
     interval: 300
@@ -389,7 +394,7 @@ proxy-groups:
   - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?=.*T(?:K[_-])KR)(?=.*\b(?:[0-5]?\d|5[0-5])%).*$
+    filter: (?i)^(?=.*TK)(?=.*(?<!-)KR)
     name: TIKTOK-KR
     type: url-test
     interval: 300
@@ -397,7 +402,7 @@ proxy-groups:
   - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?=.*T(?:K[_-])SG)(?=.*\b(?:[0-5]?\d|5[0-5])%).*$
+    filter: (?i)^(?=.*TK)(?=.*(?<!-)SG)
     name: TIKTOK-SG
     type: url-test
     interval: 300
@@ -405,7 +410,7 @@ proxy-groups:
   - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?=.*T(?:K[_-])GB)(?=.*\b(?:[0-5]?\d|5[0-5])%).*$
+    filter: (?i)^(?=.*TK)(?=.*(?<!-)GB)
     name: TIKTOK-GB
     type: url-test
     interval: 300
@@ -413,7 +418,7 @@ proxy-groups:
   - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?=.*T(?:K[_-])TW)(?=.*\b(?:[0-5]?\d|5[0-5])%).*$
+    filter: (?i)^(?=.*TK)(?=.*(?<!-)TW)
     name: TIKTOK-TW
     type: url-test
     interval: 300
@@ -423,7 +428,7 @@ proxy-groups:
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/HK.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)香港|Hong Kong|HK|🇭🇰
+    filter: (?<!-)\b(?:HK(?!⁻)|香港|港|Hong\s?Kong)\b
     name: HK AUTO
     type: url-test
     interval: 300
@@ -431,7 +436,7 @@ proxy-groups:
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/TW.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)台|新北|彰化|TW|Taiwan
+    filter: (?<!-)\b(?:TW(?!⁻)|台湾|台|tai)\b
     name: TW AUTO
     type: url-test
     interval: 300
@@ -439,7 +444,7 @@ proxy-groups:
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/SG.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)新加坡|Singapore|🇸🇬|狮城
+    filter: (?<!-)\b(?:SG(?!⁻)|新加坡|新|sin)\b
     name: SG AUTO
     type: url-test
     interval: 300
@@ -447,7 +452,7 @@ proxy-groups:
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/JP.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)日本|Japan|🇯🇵|川日|东京|大阪|泉日|埼玉|Tokyo
+    filter: (?<!-)\b(?:JP(?!⁻)|日本|日|JAPAN)\b
     name: JP AUTO
     type: url-test
     interval: 300
@@ -455,19 +460,19 @@ proxy-groups:
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/US.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)美国|USA|🇺🇸|States|American|凤凰城|洛杉矶|西雅图|芝加哥|纽约|美
+    filter: (?<!-)\b(?:US(?!⁻)|美国|美|American)\b
     name: US AUTO
     type: url-test
     interval: 300
     tolerance: 50
-  # - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/KR.png
-  #   include-all: true
-  #   exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-  #   filter: (?i)韩国|Korea|🇰🇷|韩|首尔|仁川
-  #   name: KR AUTO
-  #   type: url-test
-  #   interval: 300
-  #   tolerance: 50
+  - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/KR.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?<!-)\b(?:KR(?!⁻)|韩国|韩|首尔)\b
+    name: KR AUTO
+    type: url-test
+    interval: 300
+    tolerance: 50
 
 # 代理规则
 rules:
