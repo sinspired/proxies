@@ -1,4 +1,4 @@
-# update: 2025-10-23 04:46:59
+# update: 2025-10-23 20:13:40
 
 ### 全局配置
 profile:
@@ -320,6 +320,7 @@ proxy-groups:
     name: Twitter
     type: select
     proxies:
+      - Twitter优选
       - OpenAI
       - Gemini
       - Youtube
@@ -383,6 +384,15 @@ proxy-groups:
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)(?=.*\bYoutube\b|youtube|YT|YouTube|流媒体)
     name: Youtube
+    type: url-test
+    interval: 300
+    tolerance: 50
+
+  - icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png
+    include-all: true
+    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)(?=.*\bX\b|twitter)
+    name: Twitter优选
     type: url-test
     interval: 300
     tolerance: 50
