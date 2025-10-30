@@ -1,4 +1,4 @@
-# update: 2025-10-25 10:55:04
+# update: 2025-10-30 17:47:56
 
 ### 全局配置
 profile:
@@ -262,11 +262,11 @@ proxy-groups:
       - TIKTOK-VN
       - TIKTOK-US
       - TIKTOK-JP
-      - TIKTOK-KR
       - TIKTOK-SG
-      - TIKTOK-GB
       - TIKTOK-TW
       - 手动选择|TT
+      # - TIKTOK-KR
+      # - TIKTOK-GB
       # - TIKTOK-CA
       # - TIKTOK-DE
       # - TIKTOK-NL
@@ -420,24 +420,8 @@ proxy-groups:
   - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?=.*TK|tiktok)(?=.*(?:(?:^|[^-])KR|TK-KR))
-    name: TIKTOK-KR
-    type: url-test
-    interval: 300
-    tolerance: 50
-  - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
-    include-all: true
-    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)^(?=.*TK|tiktok)(?=.*(?:(?:^|[^-])SG|TK-SG))
     name: TIKTOK-SG
-    type: url-test
-    interval: 300
-    tolerance: 50
-  - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
-    include-all: true
-    exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?=.*TK|tiktok)(?=.*(?:(?:^|[^-])GB|TK-GB))
-    name: TIKTOK-GB
     type: url-test
     interval: 300
     tolerance: 50
@@ -449,7 +433,23 @@ proxy-groups:
     type: url-test
     interval: 300
     tolerance: 50
-
+  # - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
+  #   include-all: true
+  #   exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+  #   filter: (?i)^(?=.*TK|tiktok)(?=.*(?:(?:^|[^-])KR|TK-KR))
+  #   name: TIKTOK-KR
+  #   type: url-test
+  #   interval: 300
+  #   tolerance: 50
+  # - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
+  #   include-all: true
+  #   exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+  #   filter: (?i)^(?=.*TK|tiktok)(?=.*(?:(?:^|[^-])GB|TK-GB))
+  #   name: TIKTOK-GB
+  #   type: url-test
+  #   interval: 300
+  #   tolerance: 50
+  
   # 地区筛选
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/HK.png
     include-all: true
