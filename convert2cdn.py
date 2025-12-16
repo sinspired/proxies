@@ -82,8 +82,9 @@ def process_file(filename, cdn_type="cdn"):
         with open(filename, "w", encoding="utf-8") as f:
             f.write(content)
 
-    # 去除所有 github 代理前缀
+    # 去除所有 github 代理前缀（包括 ghproxy.net 和 gh-proxy.org）
     content = re.sub(r"https://ghproxy\.net/", "", content)
+    content = re.sub(r"https://gh-proxy\.org/", "", content)
 
     if mode == "cdn2raw":
         # 替换所有CDN为raw
@@ -102,6 +103,16 @@ def process_file(filename, cdn_type="cdn"):
             lambda m: cdn_to_raw(m.group()),
             content,
         )
+
+        # 只有最终是 raw.githubusercontent.com 的“独立 URL”才加 github proxy 前缀
+        # 前面允许是行首、空白或逗号，避免误伤嵌套 URL
+        content = re.sub(
+            r'(^|[\s,])(https://raw\.githubusercontent\.com/[^\s]+)',
+            lambda m: m.group(1) + "https://gh-proxy.org/" + m.group(2),
+            content,
+            flags=re.MULTILINE,
+        )
+
     else:
         # 替换所有raw为CDN
         content = re.sub(
