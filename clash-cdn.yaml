@@ -1,4 +1,4 @@
-# update: 2025-12-16 15:04:55
+# update: 2025-12-16 17:09:49
 
 ### 全局配置
 profile:
@@ -671,7 +671,7 @@ proxy-groups:
       - TIKTOK-JP
       - TIKTOK-SG
       - TIKTOK-TW
-      - 手动选择|TT
+      # - 手动选择|TT
       # - TIKTOK-KR
       # - TIKTOK-GB
       # - TIKTOK-CA
@@ -698,6 +698,10 @@ proxy-groups:
     type: url-test
     interval: 600
     tolerance: 100
+    url: https://cp.cloudflare.com/generate_204
+    lazy: false
+    max-failed-times: 3
+    expected-status: 204
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/Google.png
     name: Google
     type: select
@@ -772,6 +776,10 @@ proxy-groups:
     type: url-test
     interval: 600
     tolerance: 100
+    url: https://cp.cloudflare.com/generate_204
+    lazy: false
+    max-failed-times: 3
+    expected-status: 204
   - icon: https://cdn.jsdelivr.net/gh/sinspired/proxies@main/ico/Gemini.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -780,6 +788,10 @@ proxy-groups:
     type: url-test
     interval: 600
     tolerance: 100
+    url: https://www.gstatic.com/generate_204
+    lazy: false
+    max-failed-times: 3
+    expected-status: 204
   - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -788,6 +800,10 @@ proxy-groups:
     type: url-test
     interval: 600
     tolerance: 100
+    url: https://www.gstatic.com/generate_204
+    lazy: false
+    max-failed-times: 3
+    expected-status: 204
 
   - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Twitter.png
     include-all: true
@@ -797,6 +813,10 @@ proxy-groups:
     type: url-test
     interval: 600
     tolerance: 100
+    url: https://cp.cloudflare.com/generate_204
+    lazy: false
+    max-failed-times: 3
+    expected-status: 204
 
   # TikTok地区筛选
   - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
@@ -807,6 +827,10 @@ proxy-groups:
     type: url-test
     interval: 600
     tolerance: 100
+    url: https://www.gstatic.com/generate_204
+    lazy: true
+    max-failed-times: 3
+    expected-status: 204
   - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -815,6 +839,10 @@ proxy-groups:
     type: url-test
     interval: 600
     tolerance: 100
+    url: https://www.gstatic.com/generate_204
+    lazy: true
+    max-failed-times: 3
+    expected-status: 204
   - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -823,6 +851,10 @@ proxy-groups:
     type: url-test
     interval: 600
     tolerance: 100
+    url: https://www.gstatic.com/generate_204
+    lazy: true
+    max-failed-times: 3
+    expected-status: 204
   - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -831,6 +863,10 @@ proxy-groups:
     type: url-test
     interval: 600
     tolerance: 100
+    url: https://www.gstatic.com/generate_204
+    lazy: true
+    max-failed-times: 3
+    expected-status: 204
   - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -839,6 +875,10 @@ proxy-groups:
     type: url-test
     interval: 600
     tolerance: 100
+    url: https://www.gstatic.com/generate_204
+    lazy: true
+    max-failed-times: 3
+    expected-status: 204
   # - icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/TikTok.png
   #   include-all: true
   #   exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -865,6 +905,10 @@ proxy-groups:
     type: url-test
     interval: 600
     tolerance: 100
+    url: https://www.gstatic.com/generate_204
+    lazy: true
+    max-failed-times: 3
+    expected-status: 204
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/TW.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -873,6 +917,10 @@ proxy-groups:
     type: url-test
     interval: 600
     tolerance: 100
+    url: https://www.gstatic.com/generate_204
+    lazy: true
+    max-failed-times: 3
+    expected-status: 204
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/SG.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -881,6 +929,10 @@ proxy-groups:
     type: url-test
     interval: 600
     tolerance: 100
+    url: https://www.gstatic.com/generate_204
+    lazy: true
+    max-failed-times: 3
+    expected-status: 204
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/JP.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -889,6 +941,10 @@ proxy-groups:
     type: url-test
     interval: 600
     tolerance: 100
+    url: https://www.gstatic.com/generate_204
+    lazy: true
+    max-failed-times: 3
+    expected-status: 204
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/US.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -897,6 +953,10 @@ proxy-groups:
     type: url-test
     interval: 600
     tolerance: 100
+    url: https://www.gstatic.com/generate_204
+    lazy: true
+    max-failed-times: 3
+    expected-status: 204
   - icon: https://cdn.jsdelivr.net/gh/Orz-3/mini@master/Color/KR.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -905,6 +965,10 @@ proxy-groups:
     type: url-test
     interval: 600
     tolerance: 100
+    url: https://www.gstatic.com/generate_204
+    lazy: true
+    max-failed-times: 3
+    expected-status: 204
 
 # 代理规则
 rules:
