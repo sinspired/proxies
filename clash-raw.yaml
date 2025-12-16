@@ -1,4 +1,4 @@
-# update: 2025-12-16 17:09:49
+# update: 2025-12-16 19:18:04
 
 ### 全局配置
 profile:
@@ -728,7 +728,6 @@ proxy-groups:
       - Twitter优选
       - OpenAI
       - Gemini
-      - Youtube
       - PROXY
       - AUTO
       - HK AUTO
