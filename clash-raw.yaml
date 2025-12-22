@@ -714,7 +714,7 @@ proxy-groups:
       - US AUTO
       - TW AUTO
       - SG AUTO
-  - icon: https://raw.githubusercontent.com/sinspired/proxies/main/ico/AI.png
+  - icon: https://raw.githubusercontent.com/sinspired/proxy-rules/main/ico/AI.png
     name: AI
     type: select
     proxies:
@@ -743,7 +743,7 @@ proxy-groups:
       - PROXY
       - AI
       - AUTO
-  - icon: https://raw.githubusercontent.com/sinspired/proxies/main/ico/Spotify.png
+  - icon: https://raw.githubusercontent.com/sinspired/proxy-rules/main/ico/Spotify.png
     name: Spotify
     type: select
     proxies:
@@ -779,7 +779,7 @@ proxy-groups:
     lazy: false
     max-failed-times: 3
     expected-status: 204
-  - icon: https://raw.githubusercontent.com/sinspired/proxies/main/ico/Gemini.png
+  - icon: https://raw.githubusercontent.com/sinspired/proxy-rules/main/ico/Gemini.png
     include-all: true
     exclude-filter: (?i)Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)(?=.*\bGemini\b|gemini|GEMINI|\bGM\b)
